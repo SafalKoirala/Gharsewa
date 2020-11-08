@@ -1,0 +1,57 @@
+/* about us ko css */
+.aboutus-section {
+    padding: 90px 0;
+    margin-left: 220px;
+}
+.aboutus-title {
+    font-size: 30px;
+    letter-spacing: 0;
+    line-height: 32px;
+    margin: 0 0 39px;
+    padding: 0 0 11px;
+    position: relative;
+    text-transform: uppercase;
+    color: #000;
+}
+.aboutus-title::after {
+    background: #fdb801 none repeat scroll 0 0;
+    bottom: 0;
+    content: "";
+    height: 2px;
+    left: 0;
+    position: absolute;
+    width: 54px;
+}
+.aboutus-text {
+    color: #606060;
+    font-size: 13px;
+    line-height: 22px;
+    margin: 0 0 35px;
+}
+/* login ko css */
+.card-login {
+    margin-top: 5%;
+    height: 70%;
+    width: 40%;
+    padding-top: 2%;
+}
+.card-body {
+    margin-top: 5%;
+}
+/* search-bar ko css */
+.search-bar {
+    padding: 10%;
+    padding-left: 35%;
+    height: 40%;
+    background-image: url("https://images.pexels.com/photos/279719/pexels-photo-279719.jpeg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+/* our services ko css */
+.services h2 {
+    padding-left: 35%;  
+}
+.categories{
+    height:30% ;
+}
