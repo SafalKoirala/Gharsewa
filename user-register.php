@@ -46,7 +46,7 @@
               </div>
             </div>
               
-            <button type="submit" class="btn btn-success btn-block" name="customer">Register</button> 
+            <input type="submit" class="btn btn-success btn-block" name="submit" value="submit"></input> 
           </form>
           <div class="text-center">
             <a class="d-block small mt-3" href="/login">Login Page</a>
@@ -55,3 +55,25 @@
           </div>
       </div>
     </div>
+
+    <?php
+    if($_SERVER['REQUEST_METHOD']=='POST'){
+ $name =$_POST['name'];
+ $contact = $_POST['contact_number'];
+ $address = $_POST['address'];
+ $email = $_POST['email'];
+ $pass = $_POST['password'];
+ $password =md5($pass);
+ $query = "INSERT INTO user (name, contact, address, email,password) VALUES (:name, :contact, :address, :email, :password)";
+ 
+ $stmt=$pdo->prepare($query);
+ $stmt->bindParam(':name',$name);
+ $stmt->bindParam(':contact',$contact);
+ $stmt->bindParam(':address',$address);
+ $stmt->bindParam(':email',$email);
+ $stmt->bindParam(':password',$password);
+ $stmt->execute();  
+ echo "<script>window.location.href ='user-page.php'</script>";
+ }
+?> 
+ 

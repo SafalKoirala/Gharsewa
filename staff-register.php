@@ -82,7 +82,7 @@
  $stmt->bindParam(':password',$password);
 
  $stmt->execute();  
- 
+ echo "<script>window.location.href ='staff-page.php'</script>";
  }
 ?> 
  
