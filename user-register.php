@@ -73,7 +73,7 @@
  $stmt->bindParam(':email',$email);
  $stmt->bindParam(':password',$password);
  $stmt->execute();  
- echo "<script>window.location.href ='user-page.php'</script>";
+ echo "<script>window.location.href ='./user/user-page.php'</script>";
  }
 ?> 
  
