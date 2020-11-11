@@ -1,5 +1,8 @@
 <?php include('inc\head.php')?>
-<?php include('inc\nav.php')?>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark" id="nav">
+  <a class="navbar-brand">GharSewa</a>
+</nav>
+
 
 
 <div class="container">
@@ -17,18 +20,10 @@
                 <input type="password" id="inputPassword" class="form-control" placeholder="Password" name="password" required="required">
               </div>
             </div>
-            <div class="form-group">
-              <div class="checkbox">
-                <label>
-                  <input type="checkbox" value="remember-me">
-                  Remember Password
-                </label>
-              </div>
-            </div>
+        
             <button type="submit" class="btn btn-success btn-block" name="login">Login</button>
           </form>
          
         </div>
       </div>
     </div>
-    <?php include('inc\foot.php')?>

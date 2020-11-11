@@ -1,0 +1,17 @@
+
+.row{
+    
+    margin:2%;
+    margin-left:10%;
+    padding:1%; 
+    padding-left:5%;
+
+}
+.col-sm-3{
+    
+    margin-left:0.8%;
+    border: 1px solid gold;
+    padding:3%;
+    text-align: center;
+    color:white;
+}
