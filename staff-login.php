@@ -4,7 +4,7 @@
 
 <div class="container">
       <div class="card card-login mx-auto mt-3">
-        <div class="card-header">Login</div>
+        <div class="card-header">Providers Login</div>
         <div class="card-body"> 
           <form role="form" method="POST" action="">
             <div class="form-group">
@@ -25,7 +25,7 @@
                 </label>
               </div>
             </div>
-            <button type="submit" class="btn btn-success btn-block" name="login">Login</button>
+            <input type="submit" class="btn btn-success btn-block" name="login" value="login"></input>
           </form>
          
         </div>

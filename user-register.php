@@ -4,7 +4,7 @@
 
 <div class="container">
       <div class="card card-register mx-auto mt-5">
-        <div class="card-header">Register as an  User at GharSewa</div>
+        <div class="card-header">Register as a Customer at GharSewa</div>
         <div class="card-body">
   <form  id= "regfrom" role="form" method="post" action="">
 

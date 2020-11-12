@@ -5,7 +5,7 @@
 
 <div class="container">
       <div class="card card-register mx-auto mt-5">
-        <div class="card-header">Register as a  Proffesional at GharSewa</div>
+        <div class="card-header">Register as a  Provider at GharSewa</div>
         <div class="card-body">
   <form    method="POST" action="">          
             <div class="form-group">
