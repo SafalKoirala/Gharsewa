@@ -49,7 +49,7 @@
             <input type="submit" class="btn btn-success btn-block" name="submit" value="submit"></input> 
           </form>
           <div class="text-center">
-            <a class="d-block small mt-3" href="/login">Login Page</a>
+            <a class="d-block small mt-3" href="user-login.php">Login Page</a>
 
           </div>
           </div>

@@ -11,8 +11,9 @@
           Providers
         </a>
         <div class="dropdown-menu" aria-labelledby="Register">
-          <a class="dropdown-item" href="staff-register.php">Register as a Pro</a>
-          <a class="dropdown-item" href="User-register.php">Register as an User</a>
+        <a class="dropdown-item" href="staff-login.php">Login</a>
+          <a class="dropdown-item" href="staff-register.php">Register</a>
+          
          
         </div>
       </li>
@@ -21,11 +22,17 @@
           Customers
         </a>
         <div class="dropdown-menu" aria-labelledby="Register">
-          <a class="dropdown-item" href="staff-register.php">Register as a Pro</a>
-          <a class="dropdown-item" href="User-register.php">Register as an User</a>
+          <a class="dropdown-item" href="user-login.php">Login</a>
+          <a class="dropdown-item" href="User-register.php">Register</a>
          
         </div>
-      </li>  
+      </li>
+      <li class="nav-item">
+          <a class="nav-link" href="about.php">About Us</a>
+          
+         
+        </div>
+      </li>   
     </ul>
    
   </div>

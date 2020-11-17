@@ -1,6 +1,6 @@
 <?php include('inc\head.php')?>
 <?php include('inc\nav.php')?>
-
+<?php require_once"./inc/dbconn.php"?>
 
 <div class="container">
       <div class="card card-login mx-auto mt-3">
@@ -32,3 +32,29 @@
       </div>
     </div>
     <?php include('inc\foot.php')?>
+    
+    <?php
+    if($_SERVER['REQUEST_METHOD']=='POST')
+    {
+        $email=$_POST['email'];
+        $password=$_POST['password'];
+        
+    
+        $query="SELECT * FROM staff WHERE email=:email AND password=:password";
+        $stmt =$pdo->prepare($query);
+        $stmt->bindParam(':email',$email);
+        $stmt->bindParam(':password',$password);
+        $stmt->execute();
+         $staff=$stmt->fetch();
+         if(!empty($staff)){
+            
+            // $_SESSION['logged_user']=$user;
+            echo "<script>window.location.href ='staff/staff-profile.php'</script>";
+         }
+    //      else
+    //      {
+    //          echo '<h2>INVALID LOGIN</h2>';
+    //      }
+     }
+    
+    ?>
