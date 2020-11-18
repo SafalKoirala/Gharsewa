@@ -31,7 +31,8 @@
         </div>
       </div>
     </div>
-    <?php include('inc\foot.php')?>
+    
+<?php include('inc\foot.php')?>
     
     <?php
     if($_SERVER['REQUEST_METHOD']=='POST')

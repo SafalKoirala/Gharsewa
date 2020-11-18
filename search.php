@@ -10,7 +10,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
   $stmt->bindParam(':occupation',$occupation);
   $stmt->bindParam(':postalcode',$postalcode);
   $stmt->execute();
-  $staff = $stmt->fetch(PDO::FETCH_LAZY);
+  $staff = $stmt->fetchAll(PDO::FETCH_OBJ);
   if(!$staff)
   {
       echo '<h3>No Professionals found, trying a different postal code might get you the help you need</h3>';
@@ -35,20 +35,35 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
 <iframe src="https://worldpostalcode.com/nepal/madhyamanchal/bagmati/kathmandu" style="width:100%; height:100%;border: none;position: absolute;"></iframe>
  <?php }
   else{?>
-    <div class="container">
+    <div class="container"> 
     <h2><?php echo ($occupation); ?> near you</h2>
-    <div class="card" style="width:300px">
-      <img class="card-img-top rounded" src="" alt="Card image" style="width:100%; height:10%;">
-      <div class="card-body">
-        <h4 class="card-title"> <?php echo $staff->name;?></h4>
-        <p class="card-text">Address: <?php echo $staff->address;?></p>
-       <p class="card-text">Contact: <?php echo $staff->contact;?></p>
-       <p class="card-text">Experience: <?php echo $staff->experience;?>yrs</p>
-       
+    <div class="row mt-4">
+    <?php foreach ($staff as $row){ ?>
+      <div class="col-md-4">
+        <div class="card" style="width:300px">
+          <img class="card-img-top rounded" src="test.png" alt="Card image" style="width:100%; height:10%;">
+          <div class="card-body ">
+            <h4 class="card-title"> <?php echo $row->name;?></h4>
+            <p class="card-text">Address: <?php echo $row->address;?></p>
+          <p class="card-text">Contact: <?php echo $row->contact;?></p>
+          <p class="card-text">Experience: <?php echo $row->experience;?>yrs</p>
+            <button href="#" class="btn btn-primary " data-toggle="modal" data-target="#myModal">Book Now</button>
+            <button href="#" class="btn btn-primary " >View Profile</button>
+          </div>
+        </div>
+        <br>
+    </div>
+  <?php }?>
+    </div>
+  </div>
+    
   
-        <button href="#" class="btn btn-primary " data-toggle="modal" data-target="#myModal">Book Now</button>
-        <button href="#" class="btn btn-primary " >View Profile</button>
-      </div>
+
+
+
+
+
+
           <!-- modal -->
       <div class="modal" id="myModal">
       <div class="modal-dialog">
