@@ -1,7 +1,7 @@
 <?php include('inc\head.php')?>
 <?php include('inc\nav.php')?>
 <?php require_once"../inc/dbconn.php"?>
-<!-- aafno photo details update garna mileny form  -->
+
 <?php 
   $query="SELECT * FROM staff";
   $stmt=$pdo->prepare($query); 

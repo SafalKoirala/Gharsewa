@@ -2,7 +2,12 @@
 <?php include('inc/nav.php')?>
 <?php require_once"./inc/dbconn.php"?>
 
-
+<?php 
+$query ="SELECT * from services ";
+$stmt = $pdo -> prepare($query);
+$stmt->execute();
+$services=$stmt->fetchAll(PDO::FETCH_OBJ);
+?>
 <div class="container">
       <div class="card card-register mx-auto mt-5">
         <div class="card-header">Register as a  Provider at GharSewa</div>
@@ -23,14 +28,11 @@
             </div>
             <div class="form-group">
               <div class="form-label-group">
-              <label for="occupation">Occupation</label>     
+              <label for="services">Services</label>     
             <select name = "occupation"  class="form-control" >
-            <option value = "plumber">Plumber</option>
-            <option value = "electrician">Electrician</option>
-            <option value = "cleaner">Cleaner</option>
-            <option value = "carpenter">Carpenter</option>
-            <option value = "movinghelpers">Moving Helpers</option>
-            <option value = "painter">Painter</option> 
+            <?php foreach ($services as $row){ ?>
+            <option value = "<?php echo $row->services; ?>"> <?php echo $row->services;?></option>
+            <?php }?>
             </select>
               </div>
             </div>

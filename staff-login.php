@@ -38,8 +38,8 @@
     if($_SERVER['REQUEST_METHOD']=='POST')
     {
         $email=$_POST['email'];
-        $password=$_POST['password'];
-        
+        $pass=$_POST['password'];
+        $password=md5($pass);
     
         $query="SELECT * FROM staff WHERE email=:email AND password=:password";
         $stmt =$pdo->prepare($query);
@@ -52,10 +52,10 @@
             // $_SESSION['logged_user']=$user;
             echo "<script>window.location.href ='staff/staff-profile.php'</script>";
          }
-    //      else
-    //      {
-    //          echo '<h2>INVALID LOGIN</h2>';
-    //      }
+         else
+         {
+            echo '<script>alert("INVALID LOGIN,\nPLEASE TRY AGAIN WITH VALID CREDENTIALS")</script>';
+         }
      }
     
     ?>

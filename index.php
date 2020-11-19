@@ -1,24 +1,28 @@
 <?php include('inc\head.php')?>
 <?php include('inc\nav.php')?>
+<?php require_once"./inc/dbconn.php"?>
 
+<?php 
+$query ="SELECT * from services ";
+$stmt = $pdo -> prepare($query);
+$stmt->execute();
+$services=$stmt->fetchAll(PDO::FETCH_OBJ);
+?>
 <div class ="search-bar">
     <form class="form-inline my-2 my-lg-0" action="search.php" method="POST">
-    <input class="form-control mr-sm-3" type="text" name="postalcode" placeholder="postal code">
+    <input class="form-control mr-sm-3" type="text" name="postalcode" placeholder="Postal code">
     <select name = "occupation"  class="form-control mr-sm-3" required>
     <option value = "">Select a service</option>
-            <option value = "plumber">Plumber</option>
-            <option value = "electrician">Electrician</option>
-            <option value = "carpenter">Carpenter</option>
-            <option value = "cleaner">Cleaner</option>
-            <option value = "movinghelpers">Moving Helpers</option>
-            <option value = "painter">Painter</option> 
+    <?php foreach ($services as $row){ ?>
+            <option value = "<?php echo $row->services; ?>"> <?php echo $row->services;?></option>
+            <?php }?>
             </select>
          &nbsp;  
       <button class="btn btn-success my-2 my-sm-0" type="submit">Search</button>
     </form>
 </div>
 <div class="container">
-     <h2 class="headings">How it works</h2> 
+     <h2 class="headings" style="padding-left:38%;">How it works</h2> 
     <div class="card-deck">
         <div class="card">
           <div class="card-body text-center">
