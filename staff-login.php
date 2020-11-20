@@ -1,6 +1,8 @@
+<?php session_start();?>
 <?php include('inc\head.php')?>
 <?php include('inc\nav.php')?>
 <?php require_once"./inc/dbconn.php"?>
+
 
 <div class="container">
       <div class="card card-login mx-auto mt-3">
@@ -35,6 +37,7 @@
 <?php include('inc\foot.php')?>
     
     <?php
+     
     if($_SERVER['REQUEST_METHOD']=='POST')
     {
         $email=$_POST['email'];
@@ -49,8 +52,11 @@
          $staff=$stmt->fetch();
          if(!empty($staff)){
             
-            // $_SESSION['logged_user']=$user;
-            echo "<script>window.location.href ='staff/staff-profile.php'</script>";
+          
+          $_SESSION['staff_id']=$staff['id'];
+          
+             echo "<script>window.location.href ='staff/staff-page.php'</script>";
+            
          }
          else
          {

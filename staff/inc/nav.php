@@ -10,14 +10,10 @@
     <ul class="navbar-nav mr-auto">
     
       <li class="nav-item">
-        <a class="nav-link" href="staff-page.php">MAIN</a>
+        <a class="nav-link" href="staff-page.php">Home</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="staff-profile.php">Profile</a>
-      </li>
-   
-      <li class="nav-item">
-        <a class="nav-link" href="logout.php">Log Out</a>
+        <a class="nav-link" href="logout.php"name="logout">Log Out</a>
       </li>
     </ul>
    

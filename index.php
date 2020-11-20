@@ -1,3 +1,11 @@
+ <?php
+  session_start();
+if(isset($_SESSION['staff_id'])){
+  echo "<script>window.location.href ='staff/staff-page.php'</script>";
+}
+
+?> 
+
 <?php include('inc\head.php')?>
 <?php include('inc\nav.php')?>
 <?php require_once"./inc/dbconn.php"?>
