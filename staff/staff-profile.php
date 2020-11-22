@@ -27,13 +27,13 @@ if(!isset($_SESSION['staff_id'])){
             <div class="form-group">
               <div class="form-label-group">
               <label for="name">NAME</label>
-                <input type="text"  class="form-control" placeholder="NAME" name="name" value="<?php echo $staff['name'];?>" disabled>
+                <input type="text"  class="form-control" placeholder="<?php echo $staff['name'];?>" name="name" value="" disabled>
                </div>
               </div>
             <div class="form-group">
               <div class="form-label-group">
               <label for="contact_number">Contact Number</label>
-                <input type="text"  class="form-control" placeholder="Contact Number " name="contact_number" value="<?php echo $staff['contact'];?>" required="required">
+                <input type="text"  class="form-control" placeholder="<?php echo $staff['contact'];?> " name="contact_number" value="" >
                
               </div>
             </div>
@@ -46,28 +46,28 @@ if(!isset($_SESSION['staff_id'])){
             <div class="form-group">
               <div class="form-label-group">
               <label for="address">City</label>
-                <input type="text"  class="form-control" placeholder="City" name="address" value="<?php echo $staff['address'];?>" required="required">
+                <input type="text"  class="form-control" placeholder="<?php echo $staff['address'];?>" name="address" value="" >
                
               </div>
             </div>
             <div class="form-group">
               <div class="form-label-group">
               <label for="address">Experience</label>
-                <input type="text"  class="form-control" placeholder="Experience" name="experience" value="<?php echo $staff['experience'];?>" disabled>
+                <input type="text"  class="form-control" placeholder="<?php echo $staff['experience'];?>" name="experience" value="" disabled>
                
               </div>
             </div>
             <div class="form-group">
               <div class="form-label-group">
               <label for="email">Email address</label>
-                <input type="email"  class="form-control" placeholder="Email address" name="email" value="<?php echo $staff['email'];?>" required="required">
+                <input type="email"  class="form-control" placeholder="<?php echo $staff['email'];?>" name="email" value="">
                
               </div>
             </div>
             <div class="form-group">
               <div class="form-label-group">
               <label for="address">Postal Code</label>
-                <input type="text"  class="form-control" placeholder="Postal Code" name="postalcode" value="<?php echo $staff['postalcode'];?>"required="required">
+                <input type="text"  class="form-control" placeholder="<?php echo $staff['postalcode'];?>" name="postalcode">
                
               </div>
             </div>
@@ -87,3 +87,47 @@ if(!isset($_SESSION['staff_id'])){
       </div>
     </div>
    </div> 
+   <?php
+   if($_SERVER['REQUEST_METHOD'] == 'POST')
+            {
+              $id = (int)$_SESSION['staff_id'];
+
+              $contact = $_POST['contact_number'];
+              
+              // $address = $_POST['address'];
+              // $postalcode = $_POST['postalcode'];
+              // $email = $_POST['email'];
+              // $pass = $_POST['password'];
+              $password =md5($pass);
+
+                if($pass == "")
+                {
+                    $query = "UPDATE `staff` SET  `contact`=:contact,  WHERE `id`=:id";
+                }
+                else
+                {
+                    $query = "UPDATE `staff` SET `contact`=:contact,  `password`=:password WHERE `id`=:id";
+                }
+
+                $stmt = $pdo->prepare($query);
+                
+                 $stmt->bindParam(':id',$id);
+               
+                $stmt->bindParam(':contact',$contact);
+                // $stmt->bindParam(':occupation',$occupation);
+                // $stmt->bindParam(':address',$address);
+                // $stmt->bindParam(':email',$email);
+                // $stmt->bindParam(':password',$password);
+                // $stmt->bindParam(':experience',$experience);
+                // $stmt->bindParam(':postalcode',$postalcode);
+
+                if($pass != "")
+                {
+                    $stmt->bindParam(':pwd',$password);
+                }
+
+                $stmt->execute();
+               
+
+              }               
+?>

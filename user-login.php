@@ -1,3 +1,4 @@
+<?php session_start();?>
 <?php include('inc\head.php')?>
 <?php include('inc\nav.php')?>
 <?php require_once"./inc/dbconn.php"?>
@@ -49,8 +50,8 @@
          $user=$stmt->fetch();
          if(!empty($user)){
             
-            // $_SESSION['logged_user']=$user;
-            echo "<script>window.location.href ='user/user-profile.php'</script>";
+             $_SESSION['user_id']=$user['id'];
+            echo "<script>window.location.href ='user/user-page.php'</script>";
          }
          else
          {

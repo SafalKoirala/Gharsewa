@@ -32,6 +32,13 @@
             </div>
             <div class="form-group">
               <div class="form-label-group">
+              <label for="postalcode">Postal code</label>
+                <input type="text" id="address" class="form-control" placeholder="Postal Code" name="postalcode" required="required">
+               
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="form-label-group">
               <label for="email">Email address</label>
                 <input type="email" id="email" class="form-control" placeholder="Email address" name="email" required="required">
                
@@ -66,8 +73,9 @@
  $address = $_POST['address'];
  $email = $_POST['email'];
  $pass = $_POST['password'];
+ $postalcode = $_POST['postalcode'];
  $password =md5($pass);
- $query = "INSERT INTO user (name, contact, address, email,password) VALUES (:name, :contact, :address, :email, :password)";
+ $query = "INSERT INTO user (name, contact, address, email,password,postalcode) VALUES (:name, :contact, :address, :email, :password, :postalcode)";
  
  $stmt=$pdo->prepare($query);
  $stmt->bindParam(':name',$name);
@@ -75,6 +83,7 @@
  $stmt->bindParam(':address',$address);
  $stmt->bindParam(':email',$email);
  $stmt->bindParam(':password',$password);
+ $stmt->bindParam(':postalcode',$postalcode);
  $stmt->execute();  
  echo "<script>window.location.href ='./user/user-page.php'</script>";
  }

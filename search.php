@@ -1,3 +1,10 @@
+<?php session_start();
+  if(!isset($_SESSION['user_id'])){
+    echo '<script>alert("You need to login first inoreder to search for services near you");</script>';
+    echo "<script>window.location.href ='user-register.php'</script>";
+  }
+
+?>
 <?php include('inc\head.php')?>
 <?php include('inc\nav.php')?>
 <?php require_once("./inc/dbconn.php")?>
@@ -48,7 +55,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
           <p class="card-text">Contact: <?php echo $row->contact;?></p>
           <p class="card-text">Experience: <?php echo $row->experience;?>yrs</p>
             <button href="#" class="btn btn-primary " data-toggle="modal" data-target="#myModal">Book Now</button>
-            <button href="#" class="btn btn-primary " >View Profile</button>
+            <!-- <a href="" class="btn btn-primary " >View Profile</a> -->
           </div>
         </div>
         <br>

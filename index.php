@@ -3,7 +3,9 @@
 if(isset($_SESSION['staff_id'])){
   echo "<script>window.location.href ='staff/staff-page.php'</script>";
 }
-
+if(isset($_SESSION['user_id'])){
+  echo "<script>window.location.href ='user/user-page.php'</script>";
+}
 ?> 
 
 <?php include('inc\head.php')?>
