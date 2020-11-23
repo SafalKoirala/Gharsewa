@@ -61,29 +61,39 @@ $totalcat=$stmt->rowCount();
     </div>
    </div> 
 
-   <!-- <div class="container">
+   <div class="container">
 <div class="card  mx-auto mt-3">
-        <div class="card-header">Update your about us content</div>
+        <div class="card-header">Delete a Category</div>
         
         <div class="card-body ">
- 
+        <?php 
+$query ="SELECT * from services ";
+$stmt = $pdo -> prepare($query);
+$stmt->execute();
+$services=$stmt->fetchAll();
+?>
 
      <div class="form-group">
-         <label for="vat" class=" form-control-label"> Add Description</label>
-         <textarea type="text" name="pagedes" id="pagedes" required="true"class="form-control"></textarea></div>
-                       
-                     </div>
+     <form class="form-inline my-2 my-lg-0" action="delete.php" method="POST">
+    <select name = "services"  class="form-control mr-sm-3" required>
+    <option name = "">Select a service</option>
+    <?php foreach ($services as $row){ ?>
+            <option value = "<?php echo $row['services']; ?>"> <?php echo $row['services'];?></option>
+            <?php }?>
+            </select>
+         &nbsp;  
+      <button class="btn btn-success my-2 my-sm-0" type="submit">Delete</button>
+    </form
+    
                     
-                     <p style="text-align: center;"><button type="submit" class="btn btn-primary btn-sm" name="submit" id="submit">
-                             <i class="fa fa-dot-circle-o"></i> Update
-                         </button></p>
+                     
                       
                  </div>
-                 </form>
-</div> -->
+                
+</div>
 
 
-
+<!-- add service -->
    <?php 
  
  if($_SERVER['REQUEST_METHOD']=='POST'){
@@ -93,6 +103,7 @@ $totalcat=$stmt->rowCount();
  $stmt->bindParam(':services',$services);
  $stmt->execute(); 
  $LastInsertId=$pdo->lastInsertId();
+
  if ($LastInsertId>0) {
   echo '<script>alert("Category has been added.")</script>';
 echo "<script>window.location.href ='dashboard.php'</script>";

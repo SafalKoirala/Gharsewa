@@ -5,8 +5,7 @@
   }
 
 ?>
-<?php include('inc\head.php')?>
-<?php include('inc\nav.php')?>
+<?php include('inc/head.php')?>
 <?php require_once("./inc/dbconn.php")?>
 <?php 
 if($_SERVER['REQUEST_METHOD']=='POST'){
@@ -20,6 +19,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
   $staff = $stmt->fetchAll(PDO::FETCH_OBJ);
   if(!$staff)
   {
+    echo'<a href ="user/user-page.php"class="btn btn-primary " >HOME</a>';
       echo '<h3>No Professionals found, trying a different postal code might get you the help you need</h3>';
      ?> 
     <div style="margin:1%;margin-left:25%;">
@@ -42,7 +42,9 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
 <iframe src="https://worldpostalcode.com/nepal/madhyamanchal/bagmati/kathmandu" style="width:100%; height:100%;border: none;position: absolute;"></iframe>
  <?php }
   else{?>
+  <a href ="user/user-page.php"class="btn btn-primary " >HOME</a>
     <div class="container"> 
+    
     <h2><?php echo ($occupation); ?> near you</h2>
     <div class="row mt-4">
     <?php foreach ($staff as $row){ ?>

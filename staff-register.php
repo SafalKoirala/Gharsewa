@@ -97,9 +97,10 @@ $services=$stmt->fetchAll(PDO::FETCH_OBJ);
  $pass = $_POST['password'];
  $password =md5($pass);
  
- $query = "INSERT INTO staff (name, contact, occupation, address, email, password, experience, postalcode) VALUES (:name, :contact, :occupation, :address,  :email, :password, :experience, :postalcode)";
- 
+//  $query = "INSERT INTO staff (name, contact, occupation, address, email, password, experience, postalcode) VALUES (:name, :contact, :occupation, :address,  :email, :password, :experience, :postalcode)";
+ $query = "INSERT INTO staff (name, contact, occupation , address, email,password, experience, postalcode) VALUES (:name, :contact,:occupation, :address, :email, :password, :experience, :postalcode)";
  $stmt=$pdo->prepare($query);
+ 
  $stmt->bindParam(':name',$name);
  $stmt->bindParam(':contact',$contact);
  $stmt->bindParam(':occupation',$occupation);
@@ -109,10 +110,9 @@ $services=$stmt->fetchAll(PDO::FETCH_OBJ);
  $stmt->bindParam(':experience',$experience);
  $stmt->bindParam(':postalcode',$postalcode);
 
- $stmt->execute();  
-  echo "<script>window.location.href ='./staff/staff-page.php'</script>";
+ $stmt->execute(); 
+ echo "<script>alert('Account created successfully. Login to continue')</script>"; 
+  echo "<script>window.location.href ='staff-login.php'</script>";
  }
 ?> 
- 
- 
  
