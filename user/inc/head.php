@@ -14,7 +14,7 @@
  
  
   
-  <link rel ="stylesheet" href="../CSS/profile.css">
+  <link rel ="stylesheet" href="../CSS/userprofile.css">
   
   
   

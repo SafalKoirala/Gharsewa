@@ -1,0 +1,115 @@
+.container{
+      
+       height: 100%;
+       width: 100%;
+     position: absolute;
+      background-color:white;
+  
+    }
+
+    .welcome{
+      position: relative;
+    width: 450px;
+    top: -550px;
+    margin-left: 50px;
+     color: black;
+      background-color:white;
+      font-size: 40px;
+    }
+    .view{
+      position: relative;
+       top: -410px;
+        height: 40px;
+      width: 270px;
+
+    }
+    .inside{
+      left: 100px;
+      top:-500px;   
+       height: 300px;
+      width: 300px;
+      background-color:white;
+      position: relative;
+      border-radius: 50px;
+      border-bottom-width: 125px;
+    }
+    .name{
+      top:310px;
+      left: 14px;
+     height: 40px;
+      width: 270px;
+      background-color:skyblue;
+      position: absolute;
+     text-align: center;
+     font-size: 28px;
+   border-radius: 50px;
+   color: black;
+
+    }
+    .card{
+      
+    margin-top:-20px;
+     padding-left: 0px;
+     height: 320px;
+      width: 320px;
+      position: absolute;
+    }
+    .card img{
+
+  margin-right: auto;
+  display: block;
+  position: absolute;
+  margin-top: 10px;
+  right:10px ;
+  border-radius: 300px;
+    }
+
+    .tab {
+    padding-top: 100px;
+    left: 500px;
+  position: relative;
+  /* border: 1px solid #ccc; */
+  background-color: white;
+  width: 80%;
+  height: 100%;
+}     
+.tab button {
+  padding: 22px 68px;
+cursor: pointer;
+  transition: 0.1s;
+  font-size: 22px;
+  border-right:none;
+  border-left: none;
+  border-top: none;
+  outline: none; 
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+   border-bottom-width: 5px;
+   border-bottom-color:white;
+  background-color: inherit;
+  color: black;
+  
+} 
+.tab button:hover {
+  /*background-color: #ddd;*/
+  border-bottom-color: red;
+  border-bottom-width: 5px;
+  
+} 
+.tab button.active {
+  /*background-color: #ccc;*/
+    border-bottom-color: blue;
+  border-bottom-width: 5px;
+
+}
+.tabcontent{
+  margin-top: 50px;
+  position: relative;
+  left:100px;
+  background-color:white;
+  border-radius: 20px;
+  width: 500px;
+  height: 180px;
+  
+}
+                                     

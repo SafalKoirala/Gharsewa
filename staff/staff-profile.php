@@ -100,15 +100,27 @@ if(!isset($_SESSION['staff_id'])){
               // $pass = $_POST['password'];
               $password =md5($pass);
 
-                if($pass == "")
-                {
-                    $query = "UPDATE `staff` SET  `contact`=:contact,  WHERE `id`=:id";
+                if($pass == "" || $address =="" || $postalcode == "" || $email == "" )
+                { //contact
+                    $query = "UPDATE staff SET  contact=:contact  WHERE id=:id";
                 }
-                else
-                {
-                    $query = "UPDATE `staff` SET `contact`=:contact,  `password`=:password WHERE `id`=:id";
-                }
-
+                // elseif($pass == "" || $contact =="" || $postalcode == "" || $email == "" )
+                // { //address
+                //     $query = "UPDATE `staff` SET contact=:address   WHERE `id`=:id";
+                // }
+                // elseif($pass == "" || $contact =="" || $postalcode == "" && $email == "" )
+                // {//postalcode
+                //     $query = "UPDATE `staff` SET contact=:address   WHERE `id`=:id";
+                // }
+                // elseif($pass == "" && $contact =="" && $postalcode == "" && $email == "" )
+                // {//email
+                //     $query = "UPDATE `staff` SET contact=:address   WHERE `id`=:id";
+                // }
+                // elseif($pass == "" && $contact =="" && $postalcode == "" && $email == "" )
+                // {//password
+                //     $query = "UPDATE `staff` SET contact=:address   WHERE `id`=:id";
+                // }
+                
                 $stmt = $pdo->prepare($query);
                 
                  $stmt->bindParam(':id',$id);

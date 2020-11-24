@@ -85,7 +85,6 @@
  $stmt->bindParam(':password',$password);
  $stmt->bindParam(':postalcode',$postalcode);
  $stmt->execute();  
-
  echo "<script>alert('Account created successfully. Login to continue')</script>";
  echo "<script>window.location.href ='user-login.php'</script>";
  }
