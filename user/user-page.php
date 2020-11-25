@@ -35,7 +35,7 @@ $services=$stmt->fetchAll(PDO::FETCH_OBJ);
         <!-- search ko lagi -->
       <div id="one" class="tabcontent">
   <h2>SEARCH </h2>
-  <form class="form-group" action="../search.php" method="POST">
+  <form class="form-group" action="search.php" method="POST">
   <input class="form-control mr-sm-3" type="text" name="postalcode" placeholder="Postal code" value="<?php echo $user['postalcode'];?>">
     <select name = "occupation"  class="form-control mr-sm-3" required>
     <option value = "">Select a service</option>

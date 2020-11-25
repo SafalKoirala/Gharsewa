@@ -38,7 +38,7 @@ if(!isset($_SESSION['staff_id'])){
 
 <div id="three" class="tabcontent">
   <div class="div2">
-  <form action="user-update.php" method="POST">
+  <form action="staff-update.php" method="POST">
    <div class="form-group">
       <h2><label for="inputlg">Update Details</label></h2>
       <h7><label for="inputlg">Leave blank to use existing detail</label></h7>

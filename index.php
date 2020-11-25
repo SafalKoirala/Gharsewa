@@ -19,7 +19,7 @@ $stmt->execute();
 $services=$stmt->fetchAll(PDO::FETCH_OBJ);
 ?>
 <div class ="search-bar">
-    <form class="form-inline my-2 my-lg-0" action="search.php" method="POST">
+    <form class="form-inline my-2 my-lg-0" action="pseudo-search.php" method="POST">
     <input class="form-control mr-sm-3" type="text" name="postalcode" placeholder="Postal code">
     <select name = "occupation"  class="form-control mr-sm-3" required>
     <option value = "">Select a service</option>
