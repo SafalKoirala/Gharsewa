@@ -1,6 +1,6 @@
 <?php session_start();
   if(!isset($_SESSION['user_id'])){
-    echo '<script>alert("You need to login first inoreder to search for services near you");</script>';
+    echo '<script>alert("You need to login first in order to search for services near you");</script>';
     echo "<script>window.location.href ='user-register.php'</script>";
   }
 
