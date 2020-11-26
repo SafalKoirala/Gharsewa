@@ -51,7 +51,14 @@
                 </div>
         
               </div>
-            </div>
+              <div class="form-group">
+              <div class="form-label-group">
+                  <label for="password">Upload Image</label>
+                    <input type="file" id="image" class="form-control" placeholder="" name="image" required="required">  
+                </div>
+        
+              </div>
+            
               
             <input type="submit" class="btn btn-success btn-block" name="submit" value="submit"></input> 
           </form>

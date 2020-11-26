@@ -17,6 +17,17 @@ if(!isset($_SESSION['staff_id'])){
   $staff = $stmt->fetch();
   
 ?> 
+<!-- bookings ko lagi -->
+<?php 
+ $id = (int)$_SESSION['staff_id'];
+$query ="SELECT * from book where staff_id=:id ";
+$stmt = $pdo -> prepare($query);
+$stmt->bindParam(':id',$id);
+$stmt->execute();
+$booking=$stmt->fetchAll(PDO::FETCH_OBJ);
+
+?>
+	
 
 <div class="container">
 <div class="tab">
@@ -28,12 +39,78 @@ if(!isset($_SESSION['staff_id'])){
         
       <div id="one" class="tabcontent">
   <h2>Requests</h2>
-  
+  <table class="table table-striped">
+<tr>
+<th scope="col">NAME</th>
+<th scope="col">ADDRESS</th>
+<th scope="col">DATE</th>
+<th scope="col">TIME</th>
+<th scope="col">PROBLEM</th>
+<th scope="col">RESPONSE</th>
+</tr>
+<tr>
+
+<?php foreach ($booking as $row){ ?>
+<?php 
+$id =(int) $row->user_id;
+$query ="SELECT * from user where id=:id ";
+$stmt = $pdo -> prepare($query);
+$stmt->bindParam(':id',$id);
+$stmt->execute();
+$user=$stmt->fetch();
+
+?>
+  <?php if($row->flag == 0){?>
+            <td> <?php echo $user['name'];?></td>
+            <td> <?php echo $user['address'];?></td>
+            <td> <?php echo $row->date;?></td>
+            <td> <?php echo $row->time;?></td>
+            <td> <?php echo $row->problem;?></td>
+            <td>
+             <form>
+            <a href="accept.php?$row->user_id">Accpet</a> 
+            <a href="decline.php">Reject</a>
+            </td>
+             
+            </tr>
+            <?php }?>
+            <?php }?>
+
+
+</table>
 </div>
 <!-- bookings haru dekhana lai -->
 <div id="two" class="tabcontent">
-  <h2>Bookings</h2>
-  <h2><p>bookings</p> </h2>
+<table class="table table-striped">
+<tr>
+<th scope="col">NAME</th>
+<th scope="col">ADDRESS</th>
+<th scope="col">DATE</th>
+<th scope="col">TIME</th>
+<th scope="col">PROBLEM</th>
+</tr>
+<tr>
+<?php foreach ($booking as $row){ ?>
+<?php 
+$id =(int) $row->user_id;
+$query ="SELECT * from user where id=:id ";
+$stmt = $pdo -> prepare($query);
+$stmt->bindParam(':id',$id);
+$stmt->execute();
+$user=$stmt->fetch();
+
+?>     <?php if($row->bookings == 1){?>
+            <td> <?php echo $user['name'];?></td>
+            <td> <?php echo $user['address'];?></td>
+            <td> <?php echo $row->date;?></td>
+            <td> <?php echo $row->time;?></td>
+            <td> <?php echo $row->problem;?></td>  
+            </tr>
+            <?php }?>
+            <?php }?>
+
+
+</table>
 </div>
 
 <div id="three" class="tabcontent">

@@ -23,11 +23,12 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
       <button class="tablinks" onclick="openCity(event, 'one')" id="defaultOpen">Book Now</button>
       <button class="tablinks" onclick="openCity(event, 'two')">Details</button>
       <div id="one" class="tabcontent">
-      <form action="">
+      <form action="book.php" method="POST">
+      <input type="hidden" name="staff_id" value="<?php echo $staff['id'];?>"></input>
             <div class="form-group">
                 <div class="form-label-group">
                 <label for="date">Select Date</label>
-                  <input type="date"  class="form-control"  name="date">
+                  <input type="date"  class="form-control"  name="date" value="">
                 </div>
               </div>
              
@@ -48,7 +49,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
  
 </div>
 <div id="two" class="tabcontent">
-<h4 class="card-title"> <?php echo $row['name'];?></h4>
+<h4 class="card-title"> <?php echo $staff['name'];?></h4>
           <p class="card-text">Address: <?php echo $staff['address'];?></p>
           <p class="card-text">Contact: <?php echo $staff['contact'];?></p>
           <p class="card-text">Experience: <?php echo $staff['experience'];?>yrs</p>

@@ -24,6 +24,15 @@ $stmt = $pdo -> prepare($query);
 $stmt->execute();
 $services=$stmt->fetchAll(PDO::FETCH_OBJ);
 ?>
+<!-- bookings ko lagi -->
+<?php 
+ $id = (int)$_SESSION['user_id'];
+$query ="SELECT * from book where user_id=:id ";
+$stmt = $pdo -> prepare($query);
+$stmt->bindParam(':id',$id);
+$stmt->execute();
+$booking=$stmt->fetchAll(PDO::FETCH_OBJ);
+?>
 	
 <div class="container">
 <div class="tab">
@@ -50,8 +59,39 @@ $services=$stmt->fetchAll(PDO::FETCH_OBJ);
 </div>
 <!-- bookings haru dekhana lai -->
 <div id="two" class="tabcontent">
-  <h2>Bookings</h2>
-  <h3><p>bookings</p> </h3>
+<table class="table table-striped">
+<tr>
+<th scope="col">NAME</th>
+<th scope="col">SERVICE</th>
+<th scope="col">DATE</th>
+<th scope="col">TIME</th>
+<th scope="col">PROBLEM</th>
+<th scope="col">RESPONSE</th>
+</tr>
+<tr>
+<?php foreach ($booking as $row){ ?>
+<?php 
+$id =(int) $row->staff_id;
+$query ="SELECT * from staff where id=:id ";
+$stmt = $pdo -> prepare($query);
+$stmt->bindParam(':id',$id);
+$stmt->execute();
+$staff=$stmt->fetch();
+
+?>
+            <td> <?php echo $staff['name'];?></td>
+            <td> <?php echo $staff['occupation'];?></td>
+            <td> <?php echo $row->date;?></td>
+            <td> <?php echo $row->time;?></td>
+            <td> <?php echo $row->problem;?></td>
+            <td> <?php if($row->bookings == 1 ){echo ("ACCEPTED");}elseif($row->bookings == 0 ){echo("DECLINED");}else{echo("NO REPLY YET");}?></td>
+             
+            </tr>
+            <?php }?>
+
+
+</table>
+
 </div>
 
 <div id="three" class="tabcontent">
