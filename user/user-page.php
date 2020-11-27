@@ -56,6 +56,7 @@ $booking=$stmt->fetchAll(PDO::FETCH_OBJ);
       <button class="btn btn-primary btn-block" type="submit">Search</button>
       
     </form>
+    
 </div>
 <!-- bookings haru dekhana lai -->
 <div id="two" class="tabcontent">
@@ -67,6 +68,7 @@ $booking=$stmt->fetchAll(PDO::FETCH_OBJ);
 <th scope="col">TIME</th>
 <th scope="col">PROBLEM</th>
 <th scope="col">RESPONSE</th>
+<th scope="col">FEEDBACK</th>
 </tr>
 <tr>
 <?php foreach ($booking as $row){ ?>
@@ -84,9 +86,33 @@ $staff=$stmt->fetch();
             <td> <?php echo $row->date;?></td>
             <td> <?php echo $row->time;?></td>
             <td> <?php echo $row->problem;?></td>
-            <td> <?php if($row->bookings == 1 ){echo ("ACCEPTED");}elseif($row->bookings == 0 ){echo("DECLINED");}else{echo("NO REPLY YET");}?></td>
-             
+            <td> <?php if($row->bookings == 1 ){echo ("ACCEPTED");}
+            elseif($row->bookings == 0 ){
+              echo("DECLINED");
+            }else{
+              echo("NO REPLY YET");
+              }?></td>
+            <td>
+            <?php if($row->bookings == 1){
+                  if($row->rating !=0){echo ("Feedback given");}else{?>
+
+          
+              <form action="feedback.php" method="POST">
+
+             <input type="hidden"  name="book_id" value="<?php echo($row->id);?>"></input>
+             <input type="hidden"  name="staff_id" value="<?php echo $staff['id'];?>"></input>
+             <input  type="submit" class="btn btn-primary btn-sm btn-secondary " name="submit" value="ADD FEEDBACK"></input> 
+            
+             </form>
+            
+          <?php }?>
+          <?php }?>
+            </td>
+        
             </tr>
+            
+              
+           
             <?php }?>
 
 

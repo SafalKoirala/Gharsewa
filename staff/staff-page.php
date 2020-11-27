@@ -35,6 +35,7 @@ $booking=$stmt->fetchAll(PDO::FETCH_OBJ);
       <button class="tablinks" onclick="openCity(event, 'one')" id="defaultOpen">Requests</button>
        <button class="tablinks" onclick="openCity(event, 'two')">Bookings</button>
        <button class="tablinks" onclick="openCity(event, 'three')">Edit Info</button>
+       <button class="tablinks" onclick="openCity(event, 'four')">Reviews</button>
 
         
       <div id="one" class="tabcontent">
@@ -158,6 +159,18 @@ $user=$stmt->fetch();
     
   </div>
 </div>
+<div id="four" class="tabcontent">
+  <?php 
+   $id = (int)$_SESSION['staff_id'];
+  $query ="SELECT AVG(rating) as average FROM book WHERE staff_id=:id";
+  $stmt = $pdo -> prepare($query);
+  $stmt->bindParam(':id',$id);
+  $stmt->execute();
+  $avg=$stmt->fetch();
+  ?>
+  average rating:<?php echo(int)($avg['average']); ?>
+  <iframe src="reviews.php" frameborder="0"></iframe>
+</div>
 </div> 
 
 
@@ -193,6 +206,7 @@ document.getElementById("defaultOpen").click();
         </div>
         <div class="view" style="margin-left: 110px;">
       <p href="#" class="btn btn-primary btn-block"><?php echo $staff['occupation'];?></p>
+      
   
       </div>
 </div>
