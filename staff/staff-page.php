@@ -67,9 +67,19 @@ $user=$stmt->fetch();
             <td> <?php echo $row->time;?></td>
             <td> <?php echo $row->problem;?></td>
             <td>
-             <form>
-            <a href="accept.php?$row->user_id">Accpet</a> 
-            <a href="decline.php">Reject</a>
+            <div class="btn-group mr-2" role="group" aria-label="First group">
+             <form action="accept.php" method="POST">
+             <input type="hidden"  name="user_id" value="<?php echo $user['id'];?>"></input>
+             <input  type="submit" class="btn btn-primary btn-sm btn-secondary " name="submit" value="Accept"></input> 
+            
+             </form>
+             &nbsp;
+             <form action="decline.php" method="POST">
+             <input type="hidden"  name="user_id" value="<?php echo $user['id'];?>"></input>
+             <input  type="submit" class="btn btn-primary btn-sm btn-secondary" name="submit" value="Decline"></input> 
+            
+             </form>
+           </div>
             </td>
              
             </tr>
