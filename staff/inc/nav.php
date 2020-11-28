@@ -13,6 +13,9 @@
         <a class="nav-link" href="staff-page.php">Home</a>
       </li>
       <li class="nav-item">
+        <a class="nav-link" href="reviews.php">Reviews</a>
+      </li>
+      <li class="nav-item">
         <a class="nav-link" href="logout.php"name="logout">Log Out</a>
       </li>
     </ul>
