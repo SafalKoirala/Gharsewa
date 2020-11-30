@@ -179,9 +179,10 @@ document.getElementById("defaultOpen").click();
 
     <!-- user name ra image display gareko -->
        <div class="inside">
-      
+            <?php  $img=$user['image']; ?>
+
             <div class="card" style=" border-radius: 200px; background-color:skyblue;">
-                  <img class="card-img-top" src="../b.jpg" alt="Card image cap" height="300px;" width="300px;">
+            <?php echo  "<img class='card-img-top' src='$img' alt='Card image cap' height='300px;' width='300px;'>" ?>
             </div>
               <div class="name">
               <?php echo $user['name'];?>

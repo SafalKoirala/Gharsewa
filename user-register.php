@@ -6,7 +6,7 @@
       <div class="card card-register mx-auto mt-5">
         <div class="card-header">Register as a Customer at GharSewa</div>
         <div class="card-body">
-  <form  id= "regfrom" role="form" method="post" action="">
+  <form  id= "regfrom" role="form" method="post" action=""  enctype="multipart/form-data">
 
             
             <div class="form-group">
@@ -53,7 +53,7 @@
               </div>
               <div class="form-group">
               <div class="form-label-group">
-                  <label for="password">Upload Image</label>
+                  <label for="images">Upload Image</label>
                     <input type="file" id="image" class="form-control" placeholder="" name="image" required="required">  
                 </div>
         
@@ -82,7 +82,13 @@
  $pass = $_POST['password'];
  $postalcode = $_POST['postalcode'];
  $password =md5($pass);
- $query = "INSERT INTO user (name, contact, address, email,password,postalcode) VALUES (:name, :contact, :address, :email, :password, :postalcode)";
+ $image=$_FILES["image"]["name"];
+ $imagedata = file_get_contents($_FILES['image']['tmp_name']); 
+ $imagetype = $_FILES['image']['type']; 
+
+ 
+ 
+ $query = "INSERT INTO user (name, contact, address, email,password,postalcode,image) VALUES (:name, :contact, :address, :email, :password, :postalcode,:imagedata)";
  
  $stmt=$pdo->prepare($query);
  $stmt->bindParam(':name',$name);
@@ -91,9 +97,11 @@
  $stmt->bindParam(':email',$email);
  $stmt->bindParam(':password',$password);
  $stmt->bindParam(':postalcode',$postalcode);
+ $stmt->bindParam(':image',$imagedata);
  $stmt->execute();  
  echo "<script>alert('Account created successfully. Login to continue')</script>";
  echo "<script>window.location.href ='user-login.php'</script>";
- }
+ 
+    } 
 ?> 
  

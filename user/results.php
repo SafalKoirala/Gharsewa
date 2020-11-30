@@ -12,16 +12,40 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
     $stmt=$pdo->prepare($query); 
     $stmt->bindParam(':id',$id); 
     $stmt->execute();
-    $staff = $stmt->fetch(); 
-     
+    $staff = $stmt->fetch();
+    //reviews ko lagi 
+    $query ="SELECT * from book where staff_id=:id ";
+    $stmt = $pdo -> prepare($query);
+    $stmt->bindParam(':id',$id);
+    $stmt->execute();
+    $booking=$stmt->fetchAll(PDO::FETCH_OBJ);
      
 }
 ?>
+<!-- staff ko rating dekhauna lai -->
+<?php
+$id = $staff['id'];
+  $query ="SELECT AVG(rating) as average FROM book WHERE staff_id=:id";
+  $stmt = $pdo -> prepare($query);
+  $stmt->bindParam(':id',$id);
+  $stmt->execute();
+  $avg=$stmt->fetch();
+  $average = $avg['average'];
+  $avg =(int) $average;
+  $query ="SELECT COUNT(rating) as count FROM book WHERE staff_id=:id";
+  $stmt = $pdo -> prepare($query);
+  $stmt->bindParam(':id',$id);
+  $stmt->execute();
+  $count=$stmt->fetch();
+?>
+
+
 <div class="container">
 <div class="tab">
   
       <button class="tablinks" onclick="openCity(event, 'one')" id="defaultOpen">Book Now</button>
       <button class="tablinks" onclick="openCity(event, 'two')">Details</button>
+      <button class="tablinks" onclick="openCity(event, 'three')">Reviews</button>
       <div id="one" class="tabcontent">
       <form action="book.php" method="POST">
       <input type="hidden" name="staff_id" value="<?php echo $staff['id'];?>"></input>
@@ -53,7 +77,56 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
           <p class="card-text">Address: <?php echo $staff['address'];?></p>
           <p class="card-text">Contact: <?php echo $staff['contact'];?></p>
           <p class="card-text">Experience: <?php echo $staff['experience'];?>yrs</p>
+          
+              
+          <div class="rate" style=" pointer-events:none;">
+            
+            <input type="radio" id="star1" name="rate" value="5"  <?php if($avg == 5){?> checked <?php }?>/>
+            <label for="star1" >5 stars</label>
+            <input type="radio" id="star2" name="rate" value="4" <?php if($avg == 4){?> checked <?php }?>  />
+            <label for="star2" >4 stars</label>
+            <input type="radio" id="star3" name="rate" value="3" <?php if($avg == 3){?> checked <?php }?>/>
+            <label for="star3" >3 stars</label>
+            <input type="radio" id="star4" name="rate" value="2"  <?php if($avg == 2){?> checked <?php }?>/>
+            <label for="star4" >2 stars</label>
+            <input type="radio" id="star5" name="rate" value="1"   <?php if($avg == 1){?> checked <?php }?> />
+            <label for="star5" >1 star</label>
+         </div>
+         
+          <br> <br>
+          
+          <p><?php echo(round($average,1)); ?> average rating based on <?php echo(int)($count['count']); ?> reviews</p>
+         
+         
 </div>
+<div id="three" class="tabcontent">  
+  <table class="table table-striped">
+  <tr>
+  <th>Name</th>
+  <th>Review</th>
+  </tr>
+  <tr>
+  
+<?php foreach ($booking as $row){?>
+    <?php if ($row->rating>0) {?>
+       <?php 
+    $id = $row->user_id ;
+    $query="SELECT name FROM user WHERE id=:id ";
+    $stmt=$pdo->prepare($query); 
+    $stmt->bindParam(':id',$id);
+    $stmt->execute();
+    $user = $stmt->fetch();
+    ?>
+  <td><?php echo ($user['name']);?></td>
+  <td><?php echo $row->review;?></td>
+ 
+  </tr>
+  <?php } ?>
+    <?php } ?>
+  </table>
+      
+    
+  </div>
 
 
 </div> 

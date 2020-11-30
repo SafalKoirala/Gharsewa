@@ -14,7 +14,7 @@
  
 
   <link rel ="stylesheet" href="../CSS/userprofile.css">
-  
+    <link rel ="stylesheet" href="../CSS/rate.css">
   
   
   
