@@ -186,7 +186,7 @@ document.getElementById("defaultOpen").click();
        <div class="inside">
       
             <div class="card" style=" border-radius: 200px; background-color:skyblue;">
-                  <img class="card-img-top" src="../b.jpg" alt="Card image cap" height="300px;" width="300px;">
+            <img class="card-img-top" src="../images/<?php echo($staff['image']); ?>" alt="Card image cap" height="300px;" width="300px;">
             </div>
               <div class="name">
               <?php echo $staff['name'];?>

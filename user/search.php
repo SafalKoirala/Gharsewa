@@ -45,7 +45,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
     <?php foreach ($staff as $row){ ?>
       <div class="col-md-4">
         <form class="card" style="width:300px" action="results.php" method="POST">
-          <img class="card-img-top rounded" src="../b.jpg" alt="Card image" style="width:100%; height:10%;">
+          <img class="card-img-top rounded" src="../images/<?php echo $row['image'] ?>" alt="Card image" style="width:100%; height:10%;">
           <div class="card-body ">
            <input type="hidden" name="id" value="<?php echo $row['id'];?>"></input> 
            <h4 class="card-title"> <?php echo $row['name'];?></h4>

@@ -6,7 +6,7 @@
       <div class="card card-register mx-auto mt-5">
         <div class="card-header">Register as a Customer at GharSewa</div>
         <div class="card-body">
-  <form  id= "regfrom" role="form" method="post" action=""  enctype="multipart/form-data">
+  <form  id= "regfrom" role="form" method="post" action=""  enctype="multipart/form-data" >
 
             
             <div class="form-group">
@@ -54,7 +54,7 @@
               <div class="form-group">
               <div class="form-label-group">
                   <label for="images">Upload Image</label>
-                    <input type="file" id="image" class="form-control" placeholder="" name="image" required="required">  
+                    <input type="file" id="image" class="form-control" placeholder="" name="image" required="required" >  
                 </div>
         
               </div>
@@ -74,7 +74,7 @@
 
 
     <?php
-    if($_SERVER['REQUEST_METHOD']=='POST'){
+    if(isset($_POST['submit'])){
  $name =$_POST['name'];
  $contact = $_POST['contact_number'];
  $address = $_POST['address'];
@@ -82,13 +82,19 @@
  $pass = $_POST['password'];
  $postalcode = $_POST['postalcode'];
  $password =md5($pass);
- $image=$_FILES["image"]["name"];
- $imagedata = file_get_contents($_FILES['image']['tmp_name']); 
- $imagetype = $_FILES['image']['type']; 
 
- 
- 
- $query = "INSERT INTO user (name, contact, address, email,password,postalcode,image) VALUES (:name, :contact, :address, :email, :password, :postalcode,:imagedata)";
+  $image=$_FILES["image"]["name"];
+  $tmp_dir = $_FILES["image"]["tmp_name"];
+  $imagesize =$_FILES["image"]["size"];
+  $upload_dir ="images/";
+  $imgExt =strtolower(pathinfo($image,PATHINFO_EXTENSION));
+  $valid_extensions =array('jpeg','jpg','png','gif','pdf');
+  $picProfile =rand(1000,1000000). ".".$imgExt;
+  move_uploaded_file($tmp_dir,$upload_dir.$picProfile);
+
+
+
+   $query = "INSERT INTO user (name, contact, address, email,password,postalcode,image) VALUES (:name, :contact, :address, :email, :password, :postalcode, :image)";
  
  $stmt=$pdo->prepare($query);
  $stmt->bindParam(':name',$name);
@@ -97,7 +103,7 @@
  $stmt->bindParam(':email',$email);
  $stmt->bindParam(':password',$password);
  $stmt->bindParam(':postalcode',$postalcode);
- $stmt->bindParam(':image',$imagedata);
+ $stmt->bindParam(':image',$picProfile);
  $stmt->execute();  
  echo "<script>alert('Account created successfully. Login to continue')</script>";
  echo "<script>window.location.href ='user-login.php'</script>";
