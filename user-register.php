@@ -83,6 +83,21 @@
  $postalcode = $_POST['postalcode'];
  $password =md5($pass);
 
+
+
+$query = "SELECT * FROM user WHERE email=?";
+$stmt=$pdo->prepare($query); 
+  $stmt->execute([$email]);
+  $userEmail = $stmt->fetch();
+    if($userEmail){
+      echo "<script>alert('Email already registered .If you have an account try logging in.')</script>";
+      
+    }else{
+      
+    
+   
+
+
   $image=$_FILES["image"]["name"];
   $tmp_dir = $_FILES["image"]["tmp_name"];
   $imagesize =$_FILES["image"]["size"];
@@ -109,5 +124,6 @@
  echo "<script>window.location.href ='user-login.php'</script>";
  
     } 
+  }   
 ?> 
  

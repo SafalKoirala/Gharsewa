@@ -104,6 +104,17 @@ $services=$stmt->fetchAll(PDO::FETCH_OBJ);
  $pass = $_POST['password'];
  $password =md5($pass);
 
+
+
+ $query = "SELECT * FROM staff WHERE email=?";
+$stmt=$pdo->prepare($query); 
+  $stmt->execute([$email]);
+  $staffEmail = $stmt->fetch();
+    if($staffEmail){
+      echo "<script>alert('Email already registered .If you have an account try logging in.')</script>";
+      
+    }else{
+      
  $image=$_FILES["image"]["name"];
  $tmp_dir = $_FILES["image"]["tmp_name"];
  $imagesize =$_FILES["image"]["size"];
@@ -130,5 +141,6 @@ $services=$stmt->fetchAll(PDO::FETCH_OBJ);
  echo "<script>alert('Account created successfully. Login to continue')</script>"; 
   echo "<script>window.location.href ='staff-login.php'</script>";
  }
+  } 
 ?> 
  
