@@ -72,9 +72,9 @@
                     $stmt->bindParam(':postalcode',$postalcode);
                 }
                 
-                 if($pass != "")
+                 if($password != "")
                 {
-                    $stmt->bindParam(':pwd',$password);
+                    $stmt->bindParam(':password',$password);
                 }
 
                 $stmt->execute();
@@ -82,5 +82,5 @@
 
               }   
               echo "<script>alert('Updated Successfully')</script>";            
-              echo "<script>window.location.href ='user-page.php'</script>";            
+             echo "<script>window.location.href ='user-page.php'</script>";            
 ?>

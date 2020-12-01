@@ -76,9 +76,9 @@ if(!isset($_SESSION['staff_id'])){
                     $stmt->bindParam(':postalcode',$postalcode);
                 }
                 
-                 if($pass != "")
+                 if($password != "")
                 {
-                    $stmt->bindParam(':pwd',$password);
+                    $stmt->bindParam(':password',$password);
                 }
 
                 $stmt->execute();

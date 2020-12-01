@@ -148,7 +148,7 @@ $staff=$stmt->fetch();
     </div>
     <div class="form-group">
     <label for="password">Password</label>
-      <input class="form-control input-lg" id="inputlg" type="text" name="password" placeholder="">
+      <input class="form-control input-lg" id="inputlg" type="password" name="password" placeholder="">
     </div>
     <input type="submit" class="btn btn-primary btn-block" name="submit" value="Update"></input> 
     </form> 
