@@ -19,7 +19,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
 
 
 ?>
-
+<!-- rating and reviewing a worker -->
 <div class="container"> 
 
     

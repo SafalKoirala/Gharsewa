@@ -3,6 +3,7 @@
 <?php session_start();?>
 <?php require_once"../inc/dbconn.php"?>
 <?php
+//sets the flags to show requests are declined
 if($_SERVER['REQUEST_METHOD'] == 'POST')
 {
     $user_id =$_POST['user_id'] ;

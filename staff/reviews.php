@@ -10,7 +10,7 @@ $stmt->bindParam(':id',$id);
 $stmt->execute();
 $booking=$stmt->fetchAll(PDO::FETCH_OBJ);
 ?>
-<!-- average rating and total count -->
+<!-- calculating average rating and total count -->
    <?php 
    $id = (int)$_SESSION['staff_id'];
   $query ="SELECT AVG(rating) as average FROM book WHERE staff_id=:id";
@@ -27,6 +27,7 @@ $booking=$stmt->fetchAll(PDO::FETCH_OBJ);
   $count=$stmt->fetch();
   ?>
   <div class="container">
+  <!--displaying ratings -->
       <div class ="row mt-3">&nbsp;
   <div class="rate" style=" pointer-events:none;">
             
@@ -58,7 +59,7 @@ $booking=$stmt->fetchAll(PDO::FETCH_OBJ);
     $user = $stmt->fetch();
     ?>
    
-  
+  <!-- displaying reviews -->
       
     <div class="col-md-4">
       <div class="card" style="width:300px">

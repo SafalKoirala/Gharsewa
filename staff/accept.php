@@ -1,7 +1,7 @@
 <?php session_start();?>
 <?php require_once"../inc/dbconn.php"?>
 <?php
-//bookings 1 means accepted 0 means rejected and default -2 means neither accepted nor rejected
+//bookings 1 means accepted 0 means rejected and default =2 means neither accepted nor rejected
 if($_SERVER['REQUEST_METHOD'] == 'POST')
 {
     $user_id =$_POST['user_id'] ;

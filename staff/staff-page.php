@@ -31,7 +31,7 @@ $booking=$stmt->fetchAll(PDO::FETCH_OBJ);
 
 <div class="container">
 <div class="tab">
-  
+  <!-- tabs  -->
       <button class="tablinks" onclick="openCity(event, 'one')" id="defaultOpen">Requests</button>
        <button class="tablinks" onclick="openCity(event, 'two')">Bookings</button>
        <button class="tablinks" onclick="openCity(event, 'three')">Edit Info</button>
@@ -123,7 +123,7 @@ $user=$stmt->fetch();
 
 </table>
 </div>
-
+<!-- details update form -->
 <div id="three" class="tabcontent">
   <div class="div2">
   <form action="staff-update.php" method="POST">
@@ -164,6 +164,7 @@ $user=$stmt->fetch();
 
 
  <script>
+//  tabs ko javascript
 function openCity(evt, cityName) {
 var i, tabcontent, tablinks;
   tabcontent = document.getElementsByClassName("tabcontent");

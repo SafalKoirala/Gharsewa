@@ -9,6 +9,7 @@ if(!isset($_SESSION['staff_id'])){
   }?>
 
 <?php
+//php code to update form data  to the database
    if($_SERVER['REQUEST_METHOD'] == 'POST')
             {
               $id = (int)$_SESSION['staff_id'];

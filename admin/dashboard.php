@@ -73,10 +73,14 @@ $stmt->execute();
 $services=$stmt->fetchAll();
 ?>
 
+
      <div class="form-group">
      <form class="form-inline my-2 my-lg-0" action="delete.php" method="POST">
+ 
+
     <select name = "services"  class="form-control mr-sm-3" required>
     <option name = "">Select a service</option>
+
     <?php foreach ($services as $row){ ?>
             <option value = "<?php echo $row['services']; ?>"> <?php echo $row['services'];?></option>
             <?php }?>
@@ -89,7 +93,40 @@ $services=$stmt->fetchAll();
                      
                       
                  </div>
-                
+      <hr>
+   <table class="table">
+  <thead>
+    <tr>
+      
+      <th scope="col">Services</th>
+      <th scope="col">Providers</th>
+    </tr>
+  </thead>
+  <tbody>
+
+  <?php foreach ($services as $row){ ?>
+    <tr>
+     
+      <td><?php echo $row['services']; ?></td>
+      <?php 
+      $occupation = $row['services'];
+      //counting the number of staffs registered to a particular service
+       $query = "SELECT id FROM staff WHERE occupation=:occupation";
+       $stmt = $pdo->prepare($query);
+       $stmt->bindParam(':occupation',$occupation);
+       $stmt->execute();
+       $results=$stmt->fetchAll();
+       $total=$stmt->rowCount();
+      
+      ?>
+
+
+      <td><?php echo($total) ; ?></td>
+      
+    </tr>
+    <?php } ?>
+  </tbody>
+</table>
 </div>
 
 
