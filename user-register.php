@@ -3,23 +3,35 @@
 <?php include('inc\dbconn.php')?>
 
 <div class="container">
-      <div class="card card-register mx-auto mt-5">
-        <div class="card-header">Register as a Customer at GharSewa</div>
-        <div class="card-body">
-  <form  id= "regfrom" role="form" method="post" action=""  onsumbit="return validation()"enctype="multipart/form-data" >
+   <div class="row">
+      
+      <div class="col pt-2 offset-md-9">
+         <p class="display-5">Already have an Account??<a href="user-login.php" class="stretched-link">LOGIN</a><p>
+      </div>
+    </div>
+  <div class="row mb-2  pl-5 get" >
+    <h3 class="text-center display-4 "> GET CONNECTED TO OUR SERVICES</h3>
+  </div>
+  <div class="row">
+    <div class="col ">
+      <strong><h5><u> Register as a Customer at GharSEWA</u></h5></strong>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col pt-3 mb-5 ml-2 cus">
+     <form  id= "regfrom" role="form" method="post" action=""  enctype="multipart/form-data" >
 
             
             <div class="form-group">
               <div class="form-label-group">
-              <label for="name">NAME</label>
-                <input type="text" id="name" class="form-control" placeholder="NAME" name="name" required="required">
+              <label for="name">FULLNAME</label>
+                <input type="text" id="name" class="form-control" placeholder="Your Name" name="name" required="required" pattern="^[A-Za-z][A-Za-z ,.'-]+">
                
               </div>
             <div class="form-group">
               <div class="form-label-group">
               <label for="contact_number">Contact Number</label>
-              
-                <input type="text" id="contact_number" class="form-control" placeholder="98*********** " name="contact_number" required="required">
+                <input type="text" id="contact_number" class="form-control" placeholder="98********" name="contact_number" required="required" pattern="^[98][0-9]{9}">
                
               </div>
             </div>
@@ -27,28 +39,28 @@
             <div class="form-group">
               <div class="form-label-group">
               <label for="address">Address</label>
-                <input type="text" id="address" class="form-control" placeholder="Address" name="address" required="required">
+                <input type="text" id="address" class="form-control" placeholder="City Name" name="address" required="required"pattern="[A-Za-z]+">
                
               </div>
             </div>
             <div class="form-group">
               <div class="form-label-group">
               <label for="postalcode">Postal code</label>
-                <input type="text" id="address" class="form-control" placeholder="Postal Code" name="postalcode" required="required">
+                <input type="text" id="address" class="form-control" placeholder="postal code" name="postalcode" required="required" pattern="[0-9]{5}">
                
               </div>
             </div>
             <div class="form-group">
               <div class="form-label-group">
               <label for="email">Email address</label>
-                <input type="email" id="email" class="form-control" placeholder="Email address" name="email" required="required">
+                <input type="email" id="email" class="form-control" placeholder="Email" name="email" required="required" pattern="^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$">
                
               </div>
             </div>
             <div class="form-group">
               <div class="form-label-group">
                   <label for="password">Password</label>
-                    <input type="password" id="password" class="form-control" placeholder="Password" name="password" required="required">  
+                    <input type="password" id="password" class="form-control" placeholder="Must contain 8 characters" name="password" required="required" pattern="^(?=.* @#[A-Za-z0-9]){8,}$">  
                 </div>
         
               </div>
@@ -62,14 +74,16 @@
             
               
             <input type="submit" class="btn btn-success btn-block" name="submit" value="submit"></input> 
-          </form>
-          <div class="text-center">
-            <a class="d-block small mt-3" href="user-login.php">Login Page</a>
-
-          </div>
-          </div>
+       </form>
+       
       </div>
-    </div>
+    <div class="col mb-5">
+         <img src="https://image.freepik.com/free-photo/portrait-smiling-handyman-with-tools-paper-showing-thumbs-up-sign-isolated-white-background_186202-4532.jpg" class="img-fluid rounded float-right" alt="">
+     </div>
+  </div>
+</div>
+  
+</div>
 
  
 
@@ -94,14 +108,7 @@ $stmt=$pdo->prepare($query);
       echo "<script>alert('Email already registered .If you have an account try logging in.')</script>";
       
     }
-    elseif(is_numeric($sontact)==false){
-      echo"<script>alert('Invalid Contact number')</script>";
-    }
-    
-    elseif(is_numeric($postalcode)==false){
-      echo"<script>alert('Postalcode should be numbers')</script>";
-    }
-    
+
     
     
     

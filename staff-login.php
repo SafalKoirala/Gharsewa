@@ -4,29 +4,45 @@
 <?php require_once"./inc/dbconn.php"?>
 
 
-<div class="container">
-      <div class="card card-login mx-auto mt-3">
-        <div class="card-header">Providers Login</div>
-        <div class="card-body"> 
-          <form role="form" method="POST" action="">
-            <div class="form-group">
-              <div>
-                <input type="email" id="inputEmail" class="form-control" placeholder="Email address" name="email" required="required" autofocus="autofocus">
-              </div>
-            </div>
-            <div class="form-group">
-              <div>
-                <input type="password" id="inputPassword" class="form-control" placeholder="Password" name="password" required="required">
-              </div>
+<section class="form my-5 mx-5">
+   <div class="container">
+     <div class="row no-gutters">
+      <div class="col-lg-5">
+        <img src="https://media.istockphoto.com/photos/ok-for-cleaning-picture-id471666399?k=6&m=471666399&s=612x612&w=0&h=_pq6KuKY4ERX2OxoRWFhDfldCQ65TRIY_4Oa9Z2M3yA=" class="img-fluid stafflog"alt="">
+      </div>
+      <div class="col-lg-7 px-5 pt-5"><h1 class="heading1" >GharSEWA Login</h1>
+        <h3 class="py-3">Sign in to your Account </h3>
+        <form method="POST">
+          <div class="form-row">
+            <div
+            class="col-lg-7">
+              <input type="email" name="email" placeholder="Email" class="form-control my-3 p-4" pattern="^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$">
             </div>
             
+          </div>
+          <div class="form-row">
+            <div
+            class="col-lg-7">
+              <input type="password" name="password" placeholder="Password" class="form-control my-3 p-4" >
             </div>
-            <input type="submit" class="btn btn-success btn-block" name="login" value="login"></input>
-          </form>
-         
-        </div>
+            
+          </div>
+          <div class="form-row">
+            <div
+            class="col-lg-7">
+              <button type="submit" class="btn1 mt-3 mb-3 loginbtn">login</button>
+            </div>
+            
+          </div>
+          <p> Don't have an account??<a href="staff-register.php"> Register Now</a></p>
+        </form>
       </div>
-    </div>
+     </div>
+   </div>
+</section>
+</div>
+    
+<?php include('inc\foot.php')?>
     
 <?php include('inc\foot.php')?>
     

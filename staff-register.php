@@ -9,21 +9,33 @@ $stmt->execute();
 $services=$stmt->fetchAll(PDO::FETCH_OBJ);
 ?>
 <div class="container">
-      <div class="card card-register mx-auto mt-5">
-        <div class="card-header">Register as a  Provider at GharSewa</div>
-        <div class="card-body">
-  <form    method="POST" action="" enctype="multipart/form-data" >          
+   <div class="row">
+      
+      <div class="col pt-2 offset-md-9">
+         <p class="display-5">Already have an Account??<a href="staff-login.php" class="stretched-link">LOGIN</a><p>
+      </div>
+    </div>
+  <div class="row mb-2  pl-5 get" >
+    <h3 class="text-center display-4 "> GET CONNECTED TO OUR SERVICES</h3>
+  </div>
+  <div class="row">
+    <div class="col ">
+      <strong><h5><u> Register as a Provider at GharSEWA</u></h5></strong>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col pt-3 mb-5 ml-2 cus">
+    <form    method="POST" action="" enctype="multipart/form-data">          
             <div class="form-group">
               <div class="form-label-group">
               <label for="name">NAME</label>
-                <input type="text"  class="form-control" placeholder="NAME" name="name" required="required">
+                <input type="text"  class="form-control" placeholder="Your Name" name="name" required="required" pattern="^[A-Za-z]{2,25}">
                </div>
               </div>
             <div class="form-group">
               <div class="form-label-group">
               <label for="contact_number">Contact Number</label>
-              
-                <input type="text"  class="form-control" placeholder="eg: 98********" name="contact_number" required="required">
+                <input type="text"  class="form-control" placeholder="Enter number only  eg. 98********** " name="contact_number" required="required" pattern="^[98][0-9]{9}" >
                
               </div>
             </div>
@@ -40,35 +52,35 @@ $services=$stmt->fetchAll(PDO::FETCH_OBJ);
             <div class="form-group">
               <div class="form-label-group">
               <label for="address">City</label>
-                <input type="text"  class="form-control" placeholder="City" name="address" required="required">
+                <input type="text"  class="form-control" placeholder="City Name" name="address" required="required" pattern="[A-Za-z]+">
                
               </div>
             </div>
             <div class="form-group">
               <div class="form-label-group">
               <label for="address">Experience</label>
-                <input type="text"  class="form-control" placeholder="Experience in years eg :5" name="experience" required="required">
+                <input type="text"  class="form-control" placeholder="Experience in years eg.5" name="experience" required="required" pattern="[0-9]{1}">
                
               </div>
             </div>
             <div class="form-group">
               <div class="form-label-group">
               <label for="email">Email address</label>
-                <input type="email"  class="form-control" placeholder="Email address" name="email" required="required">
+                <input type="email"  class="form-control" placeholder="Email" name="email" required="required" pattern="^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$">
                
               </div>
             </div>
             <div class="form-group">
               <div class="form-label-group">
               <label for="address">Postal Code</label>
-                <input type="text"  class="form-control" placeholder="Postal Code" name="postalcode" required="required">
+                <input type="text"  class="form-control" placeholder="Postal code " name="postalcode" required="required" pattern="[0-9]{5}">
                
               </div>
             </div>
             <div class="form-group">
               <div class="form-label-group">
                   <label for="password">Password</label>
-                    <input type="password"  class="form-control" placeholder="Password" name="password" required="required">  
+                    <input type="password"  class="form-control" placeholder="Minimum 8 characters" name="password" required="required" pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$">  
                 </div>
         
               </div>
@@ -81,17 +93,18 @@ $services=$stmt->fetchAll(PDO::FETCH_OBJ);
               </div>
 
               
-            <input type="submit" class="btn btn-success btn-block" name="submit" value="submit" onclick="validation()"></input> 
+            <input type="submit" class="btn btn-success btn-block" name="submit" value="submit"></input> 
           </form>
-          <div class="text-center">
-            <a class="d-block small mt-3" href="staff-login.php">Login Page</a>
-
-          </div>
-          </div>
+       
       </div>
-    </div>
-   </div> 
-   <script>
+    <div class="col mb-5">
+         <img src="https://cdn.pixabay.com/photo/2016/12/07/09/41/refrigerator-1889068_960_720.jpg" class="img-fluid rounded float-right" alt="">
+     </div>
+  </div>
+</div>
+  
+</div>
+  
 
  
 
@@ -117,16 +130,7 @@ $stmt=$pdo->prepare($query);
       echo "<sodium_crypto_sign_ed25519_pk_to_curve25519>alert('Email already registered .If you have an account try logging in.')</sodium_crypto_sign_ed25519_pk_to_curve25519>";
       
     }
-    elseif(is_numeric($sontact)==false){
-      echo"<script>alert('Invalid Contact number')</script>";
-    }
-    
-    elseif(is_numeric($postalcode)==false){
-      echo"<script>alert('Postalcode should be numbers')</script>";
-    }
-    elseif(is_numeric($experience)==false){
-      echo"<script>alert('Experience should be in numbers')</script>";
-    }
+
     
     
     
@@ -156,8 +160,8 @@ $stmt=$pdo->prepare($query);
  $stmt->bindParam(':postalcode',$postalcode);
  $stmt->bindParam(':image',$picProfile);
  $stmt->execute(); 
- echo "<sodium_crypto_sign_ed25519_pk_to_curve25519>alert('Account created successfully. Login to continue')</sodium_crypto_sign_ed25519_pk_to_curve25519>"; 
-  echo "<sodium_crypto_sign_ed25519_pk_to_curve25519>window.location.href ='staff-login.php'</sodium_crypto_sign_ed25519_pk_to_curve25519>";
+ echo "<script>alert('Account created successfully. Login to continue')</script>"; 
+  echo "<script>window.location.href ='staff-login.php'</script>";
  }
   } 
 ?> 

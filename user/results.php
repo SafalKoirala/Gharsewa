@@ -109,9 +109,6 @@ $id = $staff['id'];
   </tr>
   <tr>
 <?php 
-
-
-
 ?>
 <?php foreach ($booking as $row){?>
     <?php if ($row->rating>0) {?>
