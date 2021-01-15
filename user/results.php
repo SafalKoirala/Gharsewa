@@ -41,8 +41,9 @@ $id = $staff['id'];
 
 
 <div class="container">
+
 <div class="tab">
-  
+
       <button class="tablinks" onclick="openCity(event, 'one')" id="defaultOpen">Book Now</button>
       <button class="tablinks" onclick="openCity(event, 'two')">Details</button>
       <button class="tablinks" onclick="openCity(event, 'three')">Reviews</button>
@@ -100,22 +101,29 @@ $id = $staff['id'];
          
 </div>
 <div id="three" class="tabcontent">  
+<!-- reviews dispaly -->
   <table class="table table-striped">
   <tr>
   <th>Name</th>
   <th>Review</th>
   </tr>
   <tr>
-  
+<?php 
+
+
+
+?>
 <?php foreach ($booking as $row){?>
     <?php if ($row->rating>0) {?>
        <?php 
+
     $id = $row->user_id ;
-    $query="SELECT name FROM user WHERE id=:id ";
+    $query="SELECT name FROM user WHERE id=:id";
     $stmt=$pdo->prepare($query); 
     $stmt->bindParam(':id',$id);
     $stmt->execute();
     $user = $stmt->fetch();
+   
     ?>
   <td><?php echo ($user['name']);?></td>
   <td><?php echo $row->review;?></td>
@@ -123,6 +131,7 @@ $id = $staff['id'];
   </tr>
   <?php } ?>
     <?php } ?>
+    
   </table>
       
     

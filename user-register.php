@@ -6,7 +6,7 @@
       <div class="card card-register mx-auto mt-5">
         <div class="card-header">Register as a Customer at GharSewa</div>
         <div class="card-body">
-  <form  id= "regfrom" role="form" method="post" action=""  enctype="multipart/form-data" >
+  <form  id= "regfrom" role="form" method="post" action=""  onsumbit="return validation()"enctype="multipart/form-data" >
 
             
             <div class="form-group">
@@ -18,7 +18,8 @@
             <div class="form-group">
               <div class="form-label-group">
               <label for="contact_number">Contact Number</label>
-                <input type="text" id="contact_number" class="form-control" placeholder="Contact Number " name="contact_number" required="required">
+              
+                <input type="text" id="contact_number" class="form-control" placeholder="98*********** " name="contact_number" required="required">
                
               </div>
             </div>
@@ -70,7 +71,7 @@
       </div>
     </div>
 
-    
+ 
 
 
     <?php
@@ -92,7 +93,19 @@ $stmt=$pdo->prepare($query);
     if($userEmail){
       echo "<script>alert('Email already registered .If you have an account try logging in.')</script>";
       
-    }else{
+    }
+    elseif(is_numeric($sontact)==false){
+      echo"<script>alert('Invalid Contact number')</script>";
+    }
+    
+    elseif(is_numeric($postalcode)==false){
+      echo"<script>alert('Postalcode should be numbers')</script>";
+    }
+    
+    
+    
+    
+    else{
       
     
    

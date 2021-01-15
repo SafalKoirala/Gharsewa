@@ -11,7 +11,9 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
   $stmt->bindParam(':occupation',$occupation);
   $stmt->bindParam(':postalcode',$postalcode);
   $stmt->execute();
+
   $staff = $stmt->fetchAll();
+  
   if(!$staff)
   {
    
@@ -39,7 +41,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
   else{?>
  
     <div class="container"> 
-    
+   
     <h2><?php echo ($occupation); ?> near you</h2>
     <div class="row mt-4">
     <?php foreach ($staff as $row){ ?>

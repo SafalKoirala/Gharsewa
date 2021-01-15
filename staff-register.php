@@ -12,7 +12,7 @@ $services=$stmt->fetchAll(PDO::FETCH_OBJ);
       <div class="card card-register mx-auto mt-5">
         <div class="card-header">Register as a  Provider at GharSewa</div>
         <div class="card-body">
-  <form    method="POST" action="" enctype="multipart/form-data">          
+  <form    method="POST" action="" enctype="multipart/form-data" >          
             <div class="form-group">
               <div class="form-label-group">
               <label for="name">NAME</label>
@@ -22,7 +22,8 @@ $services=$stmt->fetchAll(PDO::FETCH_OBJ);
             <div class="form-group">
               <div class="form-label-group">
               <label for="contact_number">Contact Number</label>
-                <input type="text"  class="form-control" placeholder="Contact Number " name="contact_number" required="required">
+              
+                <input type="text"  class="form-control" placeholder="eg: 98********" name="contact_number" required="required">
                
               </div>
             </div>
@@ -46,7 +47,7 @@ $services=$stmt->fetchAll(PDO::FETCH_OBJ);
             <div class="form-group">
               <div class="form-label-group">
               <label for="address">Experience</label>
-                <input type="text"  class="form-control" placeholder="Experience" name="experience" required="required">
+                <input type="text"  class="form-control" placeholder="Experience in years eg :5" name="experience" required="required">
                
               </div>
             </div>
@@ -80,7 +81,7 @@ $services=$stmt->fetchAll(PDO::FETCH_OBJ);
               </div>
 
               
-            <input type="submit" class="btn btn-success btn-block" name="submit" value="submit"></input> 
+            <input type="submit" class="btn btn-success btn-block" name="submit" value="submit" onclick="validation()"></input> 
           </form>
           <div class="text-center">
             <a class="d-block small mt-3" href="staff-login.php">Login Page</a>
@@ -90,6 +91,8 @@ $services=$stmt->fetchAll(PDO::FETCH_OBJ);
       </div>
     </div>
    </div> 
+   <script>
+
  
 
    <?php 
@@ -111,9 +114,24 @@ $stmt=$pdo->prepare($query);
   $stmt->execute([$email]);
   $staffEmail = $stmt->fetch();
     if($staffEmail){
-      echo "<script>alert('Email already registered .If you have an account try logging in.')</script>";
+      echo "<sodium_crypto_sign_ed25519_pk_to_curve25519>alert('Email already registered .If you have an account try logging in.')</sodium_crypto_sign_ed25519_pk_to_curve25519>";
       
-    }else{
+    }
+    elseif(is_numeric($sontact)==false){
+      echo"<script>alert('Invalid Contact number')</script>";
+    }
+    
+    elseif(is_numeric($postalcode)==false){
+      echo"<script>alert('Postalcode should be numbers')</script>";
+    }
+    elseif(is_numeric($experience)==false){
+      echo"<script>alert('Experience should be in numbers')</script>";
+    }
+    
+    
+    
+    
+    else{
       
  $image=$_FILES["image"]["name"];
  $tmp_dir = $_FILES["image"]["tmp_name"];
@@ -124,7 +142,7 @@ $stmt=$pdo->prepare($query);
  $picProfile =rand(1000,1000000). ".".$imgExt;
  move_uploaded_file($tmp_dir,$upload_dir.$picProfile);
  
-//  $query = "INSERT INTO staff (name, contact, occupation, address, email, password, experience, postalcode) VALUES (:name, :contact, :occupation, :address,  :email, :password, :experience, :postalcode)";
+
  $query = "INSERT INTO staff (name, contact, occupation , address, email,password, experience, postalcode,image) VALUES (:name, :contact,:occupation, :address, :email, :password, :experience, :postalcode,:image)";
  $stmt=$pdo->prepare($query);
  
@@ -138,8 +156,8 @@ $stmt=$pdo->prepare($query);
  $stmt->bindParam(':postalcode',$postalcode);
  $stmt->bindParam(':image',$picProfile);
  $stmt->execute(); 
- echo "<script>alert('Account created successfully. Login to continue')</script>"; 
-  echo "<script>window.location.href ='staff-login.php'</script>";
+ echo "<sodium_crypto_sign_ed25519_pk_to_curve25519>alert('Account created successfully. Login to continue')</sodium_crypto_sign_ed25519_pk_to_curve25519>"; 
+  echo "<sodium_crypto_sign_ed25519_pk_to_curve25519>window.location.href ='staff-login.php'</sodium_crypto_sign_ed25519_pk_to_curve25519>";
  }
   } 
 ?> 
