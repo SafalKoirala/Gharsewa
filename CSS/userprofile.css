@@ -66,7 +66,7 @@
 
     .tab {
     padding-top: 100px;
-    left: 500px;
+     left: 500px; 
   position: relative;
   /* border: 1px solid #ccc; */
   background-color: white;
@@ -105,7 +105,7 @@ cursor: pointer;
 .tabcontent{
   margin-top: 50px;
   position: relative;
-  left:100px;
+  left:100px; 
   background-color:white;
   border-radius: 20px;
   width: 500px;

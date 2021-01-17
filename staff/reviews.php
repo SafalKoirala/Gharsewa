@@ -52,7 +52,7 @@ $booking=$stmt->fetchAll(PDO::FETCH_OBJ);
     <?php if ($row->rating>0) {?>
        <?php 
     $id = $row->user_id ;
-    $query="SELECT name FROM user WHERE id=:id ";
+    $query="SELECT * FROM user WHERE id=:id ";
     $stmt=$pdo->prepare($query); 
     $stmt->bindParam(':id',$id);
     $stmt->execute();
@@ -63,7 +63,7 @@ $booking=$stmt->fetchAll(PDO::FETCH_OBJ);
       
     <div class="col-md-4">
       <div class="card" style="width:300px">
-         <div class="card-header">UserName: <?php echo ($user['name']);?></div>
+         <div class="card-header"><img src="../images/<?php echo($user['image']);?>" alt="Avatar" style="width:80px"><?php echo ($user['name']);?></div>
          <div class="card-body"> <?php echo $row->review;?></div> 
       
       

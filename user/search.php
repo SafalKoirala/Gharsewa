@@ -1,4 +1,5 @@
 <?php session_start();?>
+
 <?php include('../inc/head.php')?>
 <?php include('inc/nav.php')?>
 <?php require_once("../inc/dbconn.php")?>
@@ -13,7 +14,9 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
   $stmt->execute();
 
   $staff = $stmt->fetchAll();
-  
+
+
+
   if(!$staff)
   {
    
@@ -52,7 +55,6 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
            <input type="hidden" name="id" value="<?php echo $row['id'];?>"></input> 
            <h4 class="card-title"> <?php echo $row['name'];?></h4>
           <p class="card-text">Address: <?php echo $row['address'];?></p>
-          <p class="card-text">Contact: <?php echo $row['contact'];?></p>
           <p class="card-text">Experience: <?php echo $row['experience'];?>yrs</p>
           
           

@@ -44,8 +44,8 @@ $id = $staff['id'];
 
 <div class="tab">
 
-      <button class="tablinks" onclick="openCity(event, 'one')" id="defaultOpen">Book Now</button>
-      <button class="tablinks" onclick="openCity(event, 'two')">Details</button>
+      <button class="tablinks" onclick="openCity(event, 'two')" id="defaultOpen">Details</button>
+      <button class="tablinks" onclick="openCity(event, 'one')">Book now</button>
       <button class="tablinks" onclick="openCity(event, 'three')">Reviews</button>
       <div id="one" class="tabcontent">
       <form action="book.php" method="POST">
@@ -74,10 +74,10 @@ $id = $staff['id'];
  
 </div>
 <div id="two" class="tabcontent">
-<h4 class="card-title"> <?php echo $staff['name'];?></h4>
+<h4 class="card-title"> <?php echo $staff['occupation'];?></h4>
+         
           <p class="card-text">Address: <?php echo $staff['address'];?></p>
-          <p class="card-text">Contact: <?php echo $staff['contact'];?></p>
-          <p class="card-text">Experience: <?php echo $staff['experience'];?>yrs</p>
+          <p class="card-text">Experience: <?php echo $staff['experience'];?>years</p>
           
               
           <div class="rate" style=" pointer-events:none;">

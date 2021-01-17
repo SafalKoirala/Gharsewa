@@ -69,6 +69,7 @@ $booking=$stmt->fetchAll(PDO::FETCH_OBJ);
 <th scope="col">PROBLEM</th>
 <th scope="col">RESPONSE</th>
 <th scope="col">FEEDBACK</th>
+<th scope="col">CANCEL</th>
 </tr>
 <tr>
 <?php foreach ($booking as $row){ ?>
@@ -81,7 +82,7 @@ $stmt->execute();
 $staff=$stmt->fetch();
 
 ?>
-            <td> <?php echo $staff['name'];?></td>
+            <td> <?php echo $staff['name']  ; if($row->bookings == 1) { echo"</br>";echo "(";echo  $staff['contact'];echo ")";};?></td>
             <td> <?php echo $staff['occupation'];?></td>
             <td> <?php echo $row->date;?></td>
             <td> <?php echo $row->time;?></td>
@@ -89,6 +90,9 @@ $staff=$stmt->fetch();
             <td> <?php if($row->bookings == 1 ){echo ("ACCEPTED");}
             elseif($row->bookings == 0 ){
               echo("DECLINED");
+            }
+            elseif($row->bookings == 3 ){
+              echo("CANCELLED");
             }else{
               echo("NO REPLY YET");
               }?></td>
@@ -108,6 +112,13 @@ $staff=$stmt->fetch();
           <?php }?>
           <?php }?>
             </td>
+            <td><?php if($row->bookings ==2){?>
+                <form action="cancel.php" method="POST">
+                <input type="hidden"  name="staff_id" value="<?php echo $staff['id'];?>"></input>
+                <input  type="submit" class="btn btn-primary btn-sm btn-secondary" name="submit" value="Cancel"></input> 
+               
+                </form>
+          <?php  }; ?> </td>
         
             </tr>
             
