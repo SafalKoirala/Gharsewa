@@ -23,6 +23,12 @@
     $stmt->bindParam(':requests',$requests);
     $stmt->bindParam(':bookings',$bookings);
     $stmt->execute();  
+
+
+//email ko lagi
+
+
+
     echo "<script>alert('BOOKINGS MADE')</script>";
     echo "<script>window.location.href ='user-page.php'</script>";
     

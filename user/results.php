@@ -102,6 +102,7 @@ $id = $staff['id'];
 </div>
 <div id="three" class="tabcontent">  
 <!-- reviews dispaly -->
+
   <table class="table table-striped">
   <tr>
   <th>Name</th>

@@ -69,7 +69,7 @@ $booking=$stmt->fetchAll(PDO::FETCH_OBJ);
 <th scope="col">PROBLEM</th>
 <th scope="col">RESPONSE</th>
 <th scope="col">FEEDBACK</th>
-<th scope="col">CANCEL</th>
+<th scope="col">ACTION</th>
 </tr>
 <tr>
 <?php foreach ($booking as $row){ ?>
@@ -114,9 +114,62 @@ $staff=$stmt->fetch();
             </td>
             <td><?php if($row->bookings ==2){?>
                 <form action="cancel.php" method="POST">
-                <input type="hidden"  name="staff_id" value="<?php echo $staff['id'];?>"></input>
+                <input type="hidden"  name="id" value="<?php echo  ($row->id);?>"></input>
                 <input  type="submit" class="btn btn-primary btn-sm btn-secondary" name="submit" value="Cancel"></input> 
                
+                </form>
+                &nbsp;
+  <!-- Button to Open the Modal -->
+  <input type="submit" class="btn btn-primary btn-sm btn-secondary" data-toggle="modal" value="Update" data-target="#myModal">
+    
+  </input>
+
+  <!-- The Modal -->
+  <div class="modal fade" id="myModal">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+      
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Update details</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        
+        <!-- Modal body -->
+        <div class="modal-body">
+        <form action="bookingUpdate.php" method="POST">
+      <input type="hidden" name="id" value="<?php echo $row->id;?>"></input>
+            <div class="form-group">
+                <div class="form-label-group">
+                <label for="date">Select Date</label>
+                  <input type="date"  class="form-control"  name="date" value="<?php echo $row->date;?>">
+                </div>
+              </div>
+             
+              <div class="form-group">
+                <div class="form-label-group">
+                <label for="time">Select Time</label>
+                  <input type="time"  class="form-control"  name="time" value="<?php echo $row->time;?>">
+                </div>
+              </div> 
+              <div class="form-group">
+                <div class="form-label-group">
+                <label for="problem">Describe your Problem</label>
+                  <textarea type="text"  class="form-control"  name="problem" value=""><?php echo $row->problem;?></textarea>
+                </div>
+              </div> 
+                  <input type="submit" class="btn btn-success btn-block" name="submit" value="submit"></input>
+            </form>
+        </div>
+        
+        
+       
+      </div>
+    </div>
+  </div>
+  
+</div>
+
                 </form>
           <?php  }; ?> </td>
         
@@ -161,7 +214,7 @@ $staff=$stmt->fetch();
     <label for="password">Password</label>
       <input class="form-control input-lg" id="inputlg" type="password" name="password" placeholder="">
     </div>
-    <input type="submit" class="btn btn-primary btn-block" name="submit" value="Update"></input> 
+    <input type="submit" class="btn btn-primary btn-block" name="submit" value="Update" ></input> 
     </form> 
     
   </div>
