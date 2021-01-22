@@ -16,7 +16,13 @@
               $email = $_POST['email'];
               $pass = $_POST['password'];
               $password =md5($pass);
-              $query = "UPDATE user SET name=:name, contact=:contact, address=:address, postalcode=:postalcode, email=:email, password=:password  WHERE id=:id";
+              if($password == ""){
+                $query = "UPDATE user SET name=:name, contact=:contact, address=:address, postalcode=:postalcode, email=:email WHERE id=:id";
+              }
+              else{
+                $query = "UPDATE user SET name=:name, contact=:contact, address=:address, postalcode=:postalcode, email=:email, password=:password  WHERE id=:id";
+              }
+             
                 $stmt = $pdo->prepare($query);
                 $stmt->bindParam(':id',$id);
                 $stmt->bindParam(':name',$name);
@@ -24,7 +30,10 @@
                 $stmt->bindParam(':address',$address);
                 $stmt->bindParam(':email',$email);
                 $stmt->bindParam(':postalcode',$postalcode);
-                $stmt->bindParam(':password',$password);
+                if($password !=""){
+                  $stmt->bindParam(':password',$password);
+                }
+                
                 $stmt->execute();
                 echo "<script>alert('Updated Successfully')</script>";   
              echo "<script>window.location.href ='user-page.php'</script>";   

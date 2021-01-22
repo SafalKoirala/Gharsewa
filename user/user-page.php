@@ -115,12 +115,13 @@ $staff=$stmt->fetch();
             <td><?php if($row->bookings ==2){?>
                 <form action="cancel.php" method="POST">
                 <input type="hidden"  name="id" value="<?php echo  ($row->id);?>"></input>
-                <input  type="submit" class="btn btn-primary btn-sm btn-secondary" name="submit" value="Cancel"></input> 
+                <input type="hidden"  name="staff_id" value="<?php echo  $staff['id'];?>"></input>
+                <input  type="submit" class="btn  btn-sm btn-danger" name="submit" value="Cancel"></input> 
                
                 </form>
                 &nbsp;
   <!-- Button to Open the Modal -->
-  <input type="submit" class="btn btn-primary btn-sm btn-secondary" data-toggle="modal" value="Update" data-target="#myModal">
+  <input type="submit" class="btn  btn-sm btn-info" data-toggle="modal" value="Update" data-target="#myModal">
     
   </input>
 
@@ -139,6 +140,7 @@ $staff=$stmt->fetch();
         <div class="modal-body">
         <form action="bookingUpdate.php" method="POST">
       <input type="hidden" name="id" value="<?php echo $row->id;?>"></input>
+      <input type="hidden"  name="staff_id" value="<?php echo  $staff['id'];?>"></input>
             <div class="form-group">
                 <div class="form-label-group">
                 <label for="date">Select Date</label>
@@ -189,30 +191,30 @@ $staff=$stmt->fetch();
   <form action="user-update.php" method="POST">
    <div class="form-group">
       <h2><label for="inputlg">Update Details</label></h2>
-      <h7><label for="inputlg">Leave blank to use existing detail</label></h7>
+      <h7><label for="inputlg">Leave as it is to use existing detail</label></h7>
       <br>
       <label for="name">Name</label>
-      <input class="form-control input-lg" id="inputlg" type="text" name="name"  value="<?php echo $user['name'];?>">
+      <input class="form-control input-lg" id="inputlg" type="text" name="name"  value="<?php echo $user['name'];?>" required>
     </div>
     <div class="form-group">
     <label for="contact">Contact</label>
-      <input class="form-control input-lg" id="inputlg" type="text" name="contact_number"  value="<?php echo $user['contact'];?>">
+      <input class="form-control input-lg" id="inputlg" type="text" name="contact_number"  value="<?php echo $user['contact'];?>" required>
     </div>
     <div class="form-group">
     <label for="email">Email address</label>
-      <input class="form-control input-lg" id="inputlg" type="text" name="email" value="<?php echo $user['email'];?>" >
+      <input class="form-control input-lg" id="inputlg" type="text" name="email" value="<?php echo $user['email'];?>"required >
     </div>
     <div class="form-group">
     <label for="Postal Code">Postal Code</label>
-      <input class="form-control input-lg" id="inputlg" type="text"  name="postalcode"  value="<?php echo $user['postalcode'];?>">
+      <input class="form-control input-lg" id="inputlg" type="text"  name="postalcode"  value="<?php echo $user['postalcode'];?>" required>
     </div>
     <div class="form-group">
     <label for="address">Address</label>
-      <input class="form-control input-lg" id="inputlg" type="text" name="address"  value=<?php echo $user['address'];?>>
+      <input class="form-control input-lg" id="inputlg" type="text" name="address"  value=<?php echo $user['address'];?> required>
     </div>
     <div class="form-group">
     <label for="password">Password</label>
-      <input class="form-control input-lg" id="inputlg" type="password" name="password" placeholder="">
+      <input class="form-control input-lg" id="inputlg" type="password" name="password" placeholder="password">
     </div>
     <input type="submit" class="btn btn-primary btn-block" name="submit" value="Update" ></input> 
     </form> 

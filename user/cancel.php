@@ -16,9 +16,26 @@
     $stmt->bindParam(':flag',$flag);
     $stmt->bindParam(':id',$id);
     $stmt->execute();
-    echo "<script>alert('BOOKING CANCELLED')</script>";
-    echo "<script>window.location.href ='user-page.php'</script>";
+   
+   
+    //cancel ko email
+    $staff_id =$_POST['staff_id']; 
+    $id = (int)$staff_id;
+    $query ="SELECT email FROM staff WHERE id =:id";
+    $stmt=$pdo->prepare($query);
+    $stmt->bindParam(':id',$id);
+    $stmt->execute();
+    $email = $stmt->fetch();
     
-     
+     $to_email = $email["email"];
+     $subject = " Booking Cancelled";
+     $body = "Hi, An user has cancelled the current bookings";
+     $headers = "From: safalkoirala92@gmail.com";
+    
+    if (mail($to_email, $subject, $body, $headers)) {
+          echo "<script>alert('BOOKINGS CANCELLED')</script>";
+        echo "<script>window.location.href ='user-page.php'</script>";
+    }
+    
  }
 ?>

@@ -26,11 +26,26 @@
 
 
 //email ko lagi
+$id = (int)$staff_id;
+$query ="SELECT email FROM staff WHERE id =:id";
+$stmt=$pdo->prepare($query);
+$stmt->bindParam(':id',$id);
+$stmt->execute();
+$email = $stmt->fetch();
 
+ $to_email = $email["email"];
 
+ $subject = "New Booking Request";
+ $body = "Hi, There has been a new booking request please login in to your GharSewa account to deal with this request";
+ $headers = "From: safalkoirala92@gmail.com";
 
-    echo "<script>alert('BOOKINGS MADE')</script>";
+if (mail($to_email, $subject, $body, $headers)) {
+      echo "<script>alert('BOOKINGS MADE')</script>";
     echo "<script>window.location.href ='user-page.php'</script>";
+}
+
+
+  
     
      
  }

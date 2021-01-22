@@ -71,13 +71,13 @@ $user=$stmt->fetch();
             <div class="btn-group mr-2" role="group" aria-label="First group">
              <form action="accept.php" method="POST">
              <input type="hidden"  name="user_id" value="<?php echo $user['id'];?>"></input>
-             <input  type="submit" class="btn btn-primary btn-sm btn-secondary " name="submit" value="Accept"></input> 
+             <input  type="submit" class="btn btn-primary btn-sm btn-success " name="submit" value="Accept"></input> 
             
              </form>
              &nbsp;
              <form action="decline.php" method="POST">
              <input type="hidden"  name="user_id" value="<?php echo $user['id'];?>"></input>
-             <input  type="submit" class="btn btn-primary btn-sm btn-secondary" name="submit" value="Decline"></input> 
+             <input  type="submit" class="btn btn-primary btn-sm btn-danger" name="submit" value="Decline"></input> 
             
              </form>
            </div>
