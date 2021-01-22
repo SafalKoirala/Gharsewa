@@ -12,7 +12,7 @@ $services=$stmt->fetchAll(PDO::FETCH_OBJ);
    <div class="row">
       
       <div class="col pt-2 offset-md-9">
-         <p class="display-5">Already have an Account??<a href="staff-login.php" class="stretched-link">LOGIN</a><p>
+         <p class="display-5">Already have an Account??<a href="#" class="stretched-link">LOGIN</a><p>
       </div>
     </div>
   <div class="row mb-2  pl-5 get" >
@@ -35,7 +35,7 @@ $services=$stmt->fetchAll(PDO::FETCH_OBJ);
             <div class="form-group">
               <div class="form-label-group">
               <label for="contact_number">Contact Number</label>
-                <input type="text"  class="form-control" placeholder="Enter number only  eg. 98********** " name="contact_number" required="required" pattern="^[98][0-9]{9}" >
+                <input type="text"  class="form-control" placeholder="eg.(98**********) " name="contact_number" required="required" pattern="^[98][0-9]{9}" >
                
               </div>
             </div>
@@ -59,28 +59,28 @@ $services=$stmt->fetchAll(PDO::FETCH_OBJ);
             <div class="form-group">
               <div class="form-label-group">
               <label for="address">Experience</label>
-                <input type="text"  class="form-control" placeholder="Experience in years eg.5" name="experience" required="required" pattern="[0-9]{1}">
+                <input type="text"  class="form-control" placeholder="Experience" name="experience" required="required">
                
               </div>
             </div>
             <div class="form-group">
               <div class="form-label-group">
-              <label for="email">Email address</label>
-                <input type="email"  class="form-control" placeholder="Email" name="email" required="required" pattern="^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$">
+              <label for="email">Email address</label><span id="span"></span>
+                <input type="email"  class="form-control" placeholder="Email" name="email"id="email" required="required" pattern="^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$">
                
               </div>
             </div>
             <div class="form-group">
               <div class="form-label-group">
               <label for="address">Postal Code</label>
-                <input type="text"  class="form-control" placeholder="Postal code " name="postalcode" required="required" pattern="[0-9]{5}">
+                <input type="text"  class="form-control" placeholder="Postal Cpde" name="postalcode" required="required" pattern="[0-9]{5}">
                
               </div>
             </div>
             <div class="form-group">
               <div class="form-label-group">
                   <label for="password">Password</label>
-                    <input type="password"  class="form-control" placeholder="Minimum 8 characters" name="password" required="required" pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$">  
+                    <input type="password"  class="form-control" placeholder="Must contain 8 characters" name="password" required="required" pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$">  
                 </div>
         
               </div>
@@ -93,7 +93,7 @@ $services=$stmt->fetchAll(PDO::FETCH_OBJ);
               </div>
 
               
-            <input type="submit" class="btn btn-success btn-block" name="submit" value="submit"></input> 
+            <input type="submit" class="btn btn-success btn-block" id="register" name="submit" value="submit"></input> 
           </form>
        
       </div>
@@ -104,8 +104,6 @@ $services=$stmt->fetchAll(PDO::FETCH_OBJ);
 </div>
   
 </div>
-  
-
  
 
    <?php 
@@ -119,23 +117,6 @@ $services=$stmt->fetchAll(PDO::FETCH_OBJ);
  $email = $_POST['email'];
  $pass = $_POST['password'];
  $password =md5($pass);
-
-
-
- $query = "SELECT * FROM staff WHERE email=?";
-$stmt=$pdo->prepare($query); 
-  $stmt->execute([$email]);
-  $staffEmail = $stmt->fetch();
-    if($staffEmail){
-      echo "<sodium_crypto_sign_ed25519_pk_to_curve25519>alert('Email already registered .If you have an account try logging in.')</sodium_crypto_sign_ed25519_pk_to_curve25519>";
-      
-    }
-
-    
-    
-    
-    
-    else{
       
  $image=$_FILES["image"]["name"];
  $tmp_dir = $_FILES["image"]["tmp_name"];
@@ -146,7 +127,7 @@ $stmt=$pdo->prepare($query);
  $picProfile =rand(1000,1000000). ".".$imgExt;
  move_uploaded_file($tmp_dir,$upload_dir.$picProfile);
  
-
+//  $query = "INSERT INTO staff (name, contact, occupation, address, email, password, experience, postalcode) VALUES (:name, :contact, :occupation, :address,  :email, :password, :experience, :postalcode)";
  $query = "INSERT INTO staff (name, contact, occupation , address, email,password, experience, postalcode,image) VALUES (:name, :contact,:occupation, :address, :email, :password, :experience, :postalcode,:image)";
  $stmt=$pdo->prepare($query);
  
@@ -162,7 +143,26 @@ $stmt=$pdo->prepare($query);
  $stmt->execute(); 
  echo "<script>alert('Account created successfully. Login to continue')</script>"; 
   echo "<script>window.location.href ='staff-login.php'</script>";
- }
+ 
   } 
-?> 
+?>
+<script type="text/javascript">
+  $(document).ready(function(){
+    
+       $('#email').blur(function(){ 
+        var email=$(this).val();
+                $.ajax({
+        url:"staffcheck.php",
+        method:"POST",
+        data:{email:email},
+        dataType:"text",
+        success:function(data){
+          $('#span').html(data);
+        }
+
+
+      });
+    });
+  });
+</script> 
  

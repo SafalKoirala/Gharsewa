@@ -6,7 +6,7 @@
    <div class="row">
       
       <div class="col pt-2 offset-md-9">
-         <p class="display-5">Already have an Account??<a href="user-login.php" class="stretched-link">LOGIN</a><p>
+         <p class="display-5">Already have an Account??<a href="#" class="stretched-link">LOGIN</a><p>
       </div>
     </div>
   <div class="row mb-2  pl-5 get" >
@@ -25,13 +25,13 @@
             <div class="form-group">
               <div class="form-label-group">
               <label for="name">FULLNAME</label>
-                <input type="text" id="name" class="form-control" placeholder="Your Name" name="name" required="required" pattern="^[A-Za-z][A-Za-z ,.'-]+">
+                <input type="text" id="name" class="form-control" placeholder=" Your Name" name="name" required="required" pattern="^[A-Za-z][A-Za-z ,.'-]+">
                
               </div>
             <div class="form-group">
               <div class="form-label-group">
               <label for="contact_number">Contact Number</label>
-                <input type="text" id="contact_number" class="form-control" placeholder="98********" name="contact_number" required="required" pattern="^[98][0-9]{9}">
+                <input type="text" id="contact_number" class="form-control" placeholder="Mobile Number(98********) " name="contact_number" required="required" pattern="^[98][0-9]{9}">
                
               </div>
             </div>
@@ -46,13 +46,13 @@
             <div class="form-group">
               <div class="form-label-group">
               <label for="postalcode">Postal code</label>
-                <input type="text" id="address" class="form-control" placeholder="postal code" name="postalcode" required="required" pattern="[0-9]{5}">
+                <input type="text" id="address" class="form-control" placeholder="Postal Code" name="postalcode" required="required" pattern="[0-9]{5}">
                
               </div>
             </div>
             <div class="form-group">
               <div class="form-label-group">
-              <label for="email">Email address</label>
+              <label for="email">Email address</label><span id="span"></span>
                 <input type="email" id="email" class="form-control" placeholder="Email" name="email" required="required" pattern="^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$">
                
               </div>
@@ -60,7 +60,7 @@
             <div class="form-group">
               <div class="form-label-group">
                   <label for="password">Password</label>
-                    <input type="password" id="password" class="form-control" placeholder="Must contain 8 characters" name="password" required="required" pattern="^(?=.* @#[A-Za-z0-9]){8,}$">  
+                    <input type="password" id="password" class="form-control" placeholder="Must contain 8 characters" name="password" required="required"pattern="^(?=.* @#[A-Za-z0-9]){8,}$">  
                 </div>
         
               </div>
@@ -73,7 +73,7 @@
               </div>
             
               
-            <input type="submit" class="btn btn-success btn-block" name="submit" value="submit"></input> 
+            <input type="submit" class="btn btn-success btn-block" id="register" name="submit" value="submit"></input> 
        </form>
        
       </div>
@@ -84,9 +84,6 @@
 </div>
   
 </div>
-
- 
-
 
     <?php
     if(isset($_POST['submit'])){
@@ -100,19 +97,7 @@
 
 
 
-$query = "SELECT * FROM user WHERE email=?";
-$stmt=$pdo->prepare($query); 
-  $stmt->execute([$email]);
-  $userEmail = $stmt->fetch();
-    if($userEmail){
-      echo "<script>alert('Email already registered .If you have an account try logging in.')</script>";
-      
-    }
 
-    
-    
-    
-    else{
       
     
    
@@ -143,7 +128,26 @@ $stmt=$pdo->prepare($query);
  echo "<script>alert('Account created successfully. Login to continue')</script>";
  echo "<script>window.location.href ='user-login.php'</script>";
  
-    } 
+    
   }   
 ?> 
+<script type="text/javascript">
+  $(document).ready(function(){
+    
+       $('#email').blur(function(){ 
+        var email=$(this).val();
+                $.ajax({
+        url:"check.php",
+        method:"POST",
+        data:{email:email},
+        dataType:"text",
+        success:function(data){
+          $('#span').html(data);
+        }
+
+
+      });
+    });
+  });
+</script>
  
